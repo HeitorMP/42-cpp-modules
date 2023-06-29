@@ -27,10 +27,9 @@ Point::Point( const float outX, const float outY) : _x(outX), _y(outY)
 	//std::cout << "Default assignment constructor called" << std::endl;
 }
 
-Point::Point( const Point & src )
+Point::Point( const Point & src ) : _x(src._x), _y(src._y)
 {
-	(void)src;
-	;//*this = src;
+	;
 }
 
 
@@ -40,6 +39,7 @@ Point::Point( const Point & src )
 
 Point::~Point()
 {
+	;
 }
 
 
@@ -47,15 +47,14 @@ Point::~Point()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-bool	Point::operator==( Point obj ) const
+Point	&Point::operator=( Point & rhs )
 {
-	return ( (this->getX() == obj.getX()) && (this->getY() == obj.getY()) );
+	if (this != &rhs) {
+		(Fixed)this->_x = rhs._x;
+		(Fixed)this->_y = rhs._y;
+	}
+	return (*this);
 }
-
-/* Point	&Point::operator=( Point & rhs )
-{
-	return ( rhs );
-} */
 
 std::ostream	&operator<<( std::ostream & o, Point const & i )
 {
@@ -73,11 +72,11 @@ std::ostream	&operator<<( std::ostream & o, Point const & i )
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-float Point::getX() const {
-	return ( this->_x.toFloat() );
+Fixed Point::getX() const {
+	return ( (Fixed)this->_x );
 }
 
-float Point::getY() const {
-	return ( this->_y.toFloat() );
+Fixed Point::getY() const {
+	return ( (Fixed)this->_y );
 }
 /* ************************************************************************** */

@@ -25,11 +25,8 @@ int main( void ) {
     std::cout << a << std::endl;
     std::cout << b << std::endl;
     std::cout << Fixed::max( a, b ) << std::endl;
-
-   /*  Fixed a(0);
+    
     Fixed c(1);
-    Fixed const b( 10 );
-
     std::cout << "a " << a << std::endl;
     std::cout << "b " << b << std::endl;
 
@@ -58,7 +55,6 @@ int main( void ) {
     std::cout << "max: " << Fixed::max(a, c) << std::endl;
     std::cout << "min: " << Fixed::min(d, e) << std::endl;
     std::cout << "max: " << Fixed::max(d, e) << std::endl;
- */
 
     return 0;
 }

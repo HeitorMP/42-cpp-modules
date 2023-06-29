@@ -27,11 +27,10 @@ class Point
 		Point( Point const & src );
 		~Point();
 
-		float		getX() const;
-		float		getY() const;
+		Fixed		getX() const;
+		Fixed		getY() const;
 
-		//Point		&operator=( Point & rhs );
-		bool		operator==( Point obj ) const;
+		Point		&operator=( Point & rhs );
 
 	private:
 

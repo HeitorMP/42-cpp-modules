@@ -27,7 +27,7 @@ Fixed::Fixed()
 
 Fixed::Fixed(const int N)
 {
-	std::cout << "Default int constructor called" << std::endl;
+	std::cout << "Int constructor called" << std::endl;
 	this->_fixedPoint = N << this->_fractionalBits; // formula to set de fixed point at fractionalBits position do left.
 	
 	return ;
@@ -35,7 +35,7 @@ Fixed::Fixed(const int N)
 
 Fixed::Fixed(const float F)
 {
-	std::cout << "Default float constructor called" << std::endl;
+	std::cout << "Float constructor called" << std::endl;
 	this->_fixedPoint = roundf(F * (1 << this->_fractionalBits)); // https://embeddedartistry.com/blog/2018/07/12/simple-fixed-point-conversion-in-c/
 	
 	return ;

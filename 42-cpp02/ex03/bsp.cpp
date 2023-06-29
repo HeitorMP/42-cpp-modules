@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:41:46 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/06/28 10:00:40 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:16:11 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,45 +17,35 @@ static Fixed   ft_abs(Fixed x) {
     return (x < 0) ? x * -1 : x;
 }
 
-Fixed   getArea(int x1, int y1, int x2, int y2, int x3, int y3)
+static Fixed   getArea(float x1, float y1, float x2, float y2, float x3, float y3)
 {
     //area = the absolute value of Ax(By - Cy) + Bx(Cy - Ay) + Cx(Ay - By)
-    return ft_abs((float)(x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2)));
+    return ft_abs((float)(x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/ 2.0f);
 }
 
 bool    bsp( Point const a, Point const b, Point const c, Point const point) {
 
-    Fixed totalArea = getArea(a.getX(), a.getY(), b.getX(), b.getY(), c.getX(), c.getY());
+    float ax, ay, bx, by, cx, cy, px, py;
 
-    Fixed area1 = getArea(point.getX(), point.getY(), b.getX(), b.getY(), c.getX(), c.getY()); //AREA PBC
-    Fixed area2 = getArea(a.getX(), a.getY(), point.getX(), point.getY(), c.getX(), c.getY()); //AREA APC
-    Fixed area3 = getArea(a.getX(), a.getY(), b.getX(), b.getY(), point.getX(), point.getY()); //AREA ABP
+    ax = a.getX().toFloat();
+    ay = a.getY().toFloat();
+    bx = b.getX().toFloat();
+    by = b.getY().toFloat();
+    cx = c.getX().toFloat();
+    cy = c.getY().toFloat();
+    px = point.getX().toFloat();
+    py = point.getY().toFloat();
 
-    /* Check if is border */
+
+
+    Fixed totalArea = getArea(ax, ay, bx, by, cx, cy);
+    Fixed area1 = getArea(px, py, bx, by, cx, cy);      //AREA PBC
+    Fixed area2 = getArea(ax, ay, px, py, cx, cy);      //AREA APC
+    Fixed area3 = getArea(ax, ay, bx, by, px, py);      //AREA ABP
+
+    /* Check if is edge */
     if ( area1 == 0 || area2 == 0 || area3 == 0 ) {
         return (0);
     }
     return (totalArea == area1 + area2 + area3);
-}
-
-int main(int argc, char const *argv[])
-{
-    (void)argc; (void)argv;
-
-    bool teste;
-
-    teste = bsp( Point(0, 0), Point(5, 5), Point(5, 0), Point(4, 0) );
-    std::cout << "Is it in?: " << teste << std::endl;
-    teste = bsp( Point(0, 0), Point(5, 5), Point(5, 0), Point(4, 1) );
-    std::cout << "Is it in?: " << teste << std::endl;
-    teste = bsp( Point(0, 0), Point(5, 5), Point(5, 0), Point(4, 2) );
-    std::cout << "Is it in?: " << teste << std::endl;
-    teste = bsp( Point(0, 0), Point(5, 5), Point(5, 0), Point(4, 3) );
-    std::cout << "Is it in?: " << teste << std::endl;
-    teste = bsp( Point(0, 0), Point(5, 5), Point(5, 0), Point(4, 4) );
-    std::cout << "Is it in?: " << teste << std::endl;
-    teste = bsp( Point(0, 0), Point(5, 5), Point(5, 0), Point(4, 5) );
-    std::cout << "Is it in?: " << teste << std::endl;
-
-    return 0;
 }

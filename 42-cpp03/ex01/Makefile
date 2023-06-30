@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Folders and Names
-NAME		= clap
+NAME		= scav
 SRCDIR		= .
 SRCS		= main.cpp ClapTrap.cpp ScavTrap.cpp
 INCLUDES	= ClapTrap.hpp ScavTrap.hpp

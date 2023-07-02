@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 16:25:12 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/01 16:45:21 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:01:28 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ Brain::Brain()
 
 Brain::Brain( const Brain & src )
 {
+	*this = src;
+	std::cout << "Copy Brain Constructor called!" << std::endl;
 }
 
 
@@ -32,7 +34,7 @@ Brain::Brain( const Brain & src )
 
 Brain::~Brain()
 {
-	std::cout << "Default Brain Destructor called!" << std::endl;
+	std::cout << "Brain Destructor called!" << std::endl;
 }
 
 

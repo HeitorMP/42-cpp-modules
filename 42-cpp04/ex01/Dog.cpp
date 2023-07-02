@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 16:34:42 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/01 16:48:56 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:01:53 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Dog::~Dog()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Dog	&Dog::operator=( Dog const & rhs )
+Dog				&Dog::operator=( Dog const & rhs )
 {
 	if ( this != &rhs )
 	{
@@ -56,7 +56,7 @@ Dog	&Dog::operator=( Dog const & rhs )
 	return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, Dog const & i )
+std::ostream	&operator<<( std::ostream & o, Dog const & i )
 {
 	o << "Type = " << i.getType();
 	return o;
@@ -70,7 +70,6 @@ std::ostream &			operator<<( std::ostream & o, Dog const & i )
 void	Dog::makeSound( void ) const {
 	std::cout << "Au Au!" << std::endl;
 }
-
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

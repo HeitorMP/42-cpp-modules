@@ -6,15 +6,15 @@
 #    By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 14:54:49 by hmaciel-          #+#    #+#              #
-#    Updated: 2023/07/01 15:16:44 by hmaciel-         ###   ########.fr        #
+#    Updated: 2023/07/02 10:58:31 by hmaciel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Folders and Names
-NAME		= animal
+NAME		= brain
 SRCDIR		= .
-SRCS		= main.cpp Animal.cpp Dog.cpp Cat.cpp
-INCLUDES	= Animal.hpp Dog.hpp Cat.hpp
+SRCS		= main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
+INCLUDES	= Animal.hpp Dog.hpp Cat.hpp Brain.hpp
 OBJSDIR		= objs
 OBJS		= $(SRCS:%.cpp=$(OBJSDIR)/%.o)
 

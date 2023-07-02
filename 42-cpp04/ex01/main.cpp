@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:56:40 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/01 16:45:24 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/02 12:52:36 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ int main(int argc, char const *argv[])
 {
     (void)argc;
     (void)argv;
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
-    delete j;//should not create a leak
-    delete i;
+    
+    Animal array[4] = {array[0] = new Dog(), array[1] = new Dog(), new Cat(), new Cat()};
+
+    for (int i = 0; i < 4; i++)
+    {
+        delete array[i];
+    }
     return 0;
 
 }

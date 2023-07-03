@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:29:29 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/06/22 13:40:33 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:43:58 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int main( void ) {
     //std::cout << "Aqui: " << b << std::endl;
     
     std::cout << "a is " << a << std::endl;
+    std::cout << "b is " << b.getRawBits() << std::endl;
     std::cout << "b is " << b << std::endl;
+    std::cout << "c is " << c.getRawBits() << std::endl;
     std::cout << "c is " << c << std::endl;
     std::cout << "d is " << d << std::endl;
     std::cout << "a is " << a.toInt() << " as integer" << std::endl;

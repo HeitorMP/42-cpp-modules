@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:13:52 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/02 11:08:56 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/01 15:40:12 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Cat::Cat() : Animal( "Cat" )
+WrongCat::WrongCat() : Animal( "WrongCat" )
 {
-	std::cout << "Default Cat Constructor called!" << std::endl;
-	this->_ideas = new Brain();
+	std::cout << "Default WrongCat Constructor called!" << std::endl;
 }
 
-Cat::Cat( const Cat & src ) : Animal( "Cat" )
+WrongCat::WrongCat( const WrongCat & src ) : Animal( "WrongCat" )
 {
 	this->_type = src._type;
-	for (int i = 0; i < 100; i++) {
-		this->_ideas[i] = src._ideas[i];
-	}
-	std::cout << "Cat Copy Constructor called!" << std::endl;
+	std::cout << "WrongCat Copy Constructor called!" << std::endl;
 }
 
 
@@ -36,10 +32,9 @@ Cat::Cat( const Cat & src ) : Animal( "Cat" )
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Cat::~Cat()
+WrongCat::~WrongCat()
 {
-	delete ( this->_ideas );
-	std::cout << "Cat Destructor called!" << std::endl;
+	std::cout << "WrongCat Destructor called!" << std::endl;
 }
 
 
@@ -47,19 +42,16 @@ Cat::~Cat()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Cat	&Cat::operator=( Cat const & rhs )
+WrongCat	&WrongCat::operator=( WrongCat const & rhs )
 {
 	if ( this != &rhs )
 	{
 		this->_type = rhs._type;
-		for (int i = 0; i < 100; i++) {
-			this->_ideas[i] = rhs._ideas[i];
-		}
 	}
 	return *this;
 }
 
-std::ostream	&operator<<( std::ostream & o, Cat const & i )
+std::ostream	&operator<<( std::ostream & o, WrongCat const & i )
 {
 	o << "Type = " << i.getType();
 	return o;
@@ -70,8 +62,8 @@ std::ostream	&operator<<( std::ostream & o, Cat const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void	Cat::makeSound( void ) const {
-	std::cout << "Miau Miau!" << std::endl;
+void	WrongCat::makeSound( void ) const {
+	std::cout << "Wrong Miau Miau!" << std::endl;
 }
 
 

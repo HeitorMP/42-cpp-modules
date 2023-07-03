@@ -16,13 +16,13 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Cat::Cat() : Animal( "Cat" )
+Cat::Cat() : AAnimal( "Cat" )
 {
 	std::cout << "Default Cat Constructor called!" << std::endl;
 	this->_ideas = new Brain();
 }
 
-Cat::Cat( const Cat & src ) : Animal( "Cat" )
+Cat::Cat( const Cat & src ) : AAnimal( "Cat" )
 {
 	this->_type = src._type;
 	for (int i = 0; i < 100; i++) {

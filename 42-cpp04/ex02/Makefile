@@ -5,23 +5,22 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/06/22 11:49:54 by hmaciel-          #+#    #+#              #
-#    Updated: 2023/07/03 11:08:29 by hmaciel-         ###   ########.fr        #
+#    Created: 2023/07/01 14:54:49 by hmaciel-          #+#    #+#              #
+#    Updated: 2023/07/02 10:58:31 by hmaciel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Folders and Names
-NAME		= diamond
+NAME		= abstract
 SRCDIR		= .
-SRCS		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
-INCLUDES	= ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
+SRCS		= main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
+INCLUDES	= Animal.hpp Dog.hpp Cat.hpp Brain.hpp
 OBJSDIR		= objs
 OBJS		= $(SRCS:%.cpp=$(OBJSDIR)/%.o)
 
 # Compiler options
 CC			= c++
-CFLAGS		= -Wall -Wextra -Werror -std=c++98 #-Wno-shadow -Wshadow=local
-
+CFLAGS		= -Wall -Wextra -Werror -std=c++98
 all: ${NAME} ${INCLUDES}
 
 ${NAME}: ${OBJS}

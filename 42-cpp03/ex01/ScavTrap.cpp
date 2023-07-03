@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:07:52 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/06/30 17:44:13 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/03 10:54:20 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 ScavTrap::ScavTrap()
 {
-
 	this->_hitPoint = 100;
 	this->_energyPoint = 50;
 	this->_attackDamage = 20;

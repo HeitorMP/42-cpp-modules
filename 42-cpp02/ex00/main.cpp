@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:29:29 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/06/22 12:10:05 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:37:54 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main( void ) {
     Fixed c;
 
     c = b;
-    
+    c.setRawBits(0);    
     std::cout << a.getRawBits() << std::endl;
     std::cout << b.getRawBits() << std::endl;
     std::cout << c.getRawBits() << std::endl;

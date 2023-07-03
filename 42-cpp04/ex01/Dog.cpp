@@ -19,12 +19,15 @@
 Dog::Dog() : Animal( "Dog" )
 {
 	std::cout << "Default Dog Constructor called!" << std::endl;
-	this->_dogIdeas = new Brain();
+	this->_ideas = new Brain();
 }
 
 Dog::Dog( const Dog & src ) : Animal( "Dog" )
 {
 	this->_type = src._type;
+	for (int i = 0; i < 100; i++) {
+		this->_ideas[i] = src._ideas[i];
+	}
 	std::cout << "Dog Copy Constructor called!" << std::endl;
 }
 
@@ -35,7 +38,7 @@ Dog::Dog( const Dog & src ) : Animal( "Dog" )
 
 Dog::~Dog()
 {
-	delete ( this->_dogIdeas );
+	delete ( this->_ideas );
 	std::cout << "Dog Destructor called!" << std::endl;
 }
 
@@ -44,13 +47,13 @@ Dog::~Dog()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Dog				&Dog::operator=( Dog const & rhs )
+Dog	&Dog::operator=( Dog const & rhs )
 {
 	if ( this != &rhs )
 	{
 		this->_type = rhs._type;
 		for (int i = 0; i < 100; i++) {
-			this->_dogIdeas[i] = rhs._dogIdeas[i];
+			this->_ideas[i] = rhs._ideas[i];
 		}
 	}
 	return *this;

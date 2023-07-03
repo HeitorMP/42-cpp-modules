@@ -18,9 +18,11 @@ int main(int argc, char const *argv[])
 {
     (void)argc;
     (void)argv;
+
+    AAnimal h;
     
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    AAnimal* j = new Dog();
+    AAnimal* i = new Cat();
     delete j; //should not create a leak
     delete i;
     return 0;

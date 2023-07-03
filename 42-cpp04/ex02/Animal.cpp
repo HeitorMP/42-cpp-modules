@@ -57,10 +57,6 @@ std::ostream	&operator<<( std::ostream & o, AAnimal & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void	AAnimal::makeSound( void ) const {
-	std::cout << "AAnimal Sound!" << std::endl;
-}
-
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:19:51 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/04 10:22:37 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:11:25 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ AMateria	*Cure::clone() const {
 	return (tmp);
 }
 
-void 		use(ICharacter& target) {
+void 		Cure::use(ICharacter& target) {
 	std::cout << "* heals "<< target.getName() << " wounds *" << std::endl;
 }
 

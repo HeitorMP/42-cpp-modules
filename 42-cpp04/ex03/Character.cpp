@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:02:41 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/04 14:59:05 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:23:48 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ std::string const & Character::getName() const {
 
 void		Character::equip(AMateria* m) {
 	for (int i = 0; i < 4; i++) {
-		if ( this->_inventory[i] != NULL) {
+		if ( this->_inventory[i] == NULL) {
 			this->_inventory[i] = m;
 			return ;
 		}

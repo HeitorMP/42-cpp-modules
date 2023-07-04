@@ -6,14 +6,14 @@
 #    By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 14:54:49 by hmaciel-          #+#    #+#              #
-#    Updated: 2023/07/04 15:00:06 by hmaciel-         ###   ########.fr        #
+#    Updated: 2023/07/04 18:08:38 by hmaciel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Folders and Names
 NAME		= rpg
 SRCDIR		= .
-SRCS		= main.cpp AMateria.cpp Character.cpp ICharacter.cpp Ice.cpp Cure.cpp
+SRCS		= main.cpp AMateria.cpp Character.cpp Ice.cpp Cure.cpp
 INCLUDES	= AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp
 OBJSDIR		= objs
 OBJS		= $(SRCS:%.cpp=$(OBJSDIR)/%.o)

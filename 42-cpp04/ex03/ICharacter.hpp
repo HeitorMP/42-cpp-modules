@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 09:50:15 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/04 15:01:28 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:09:51 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <iostream>
 # include <string>
 # include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {

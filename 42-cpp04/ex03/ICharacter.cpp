@@ -1,10 +1,14 @@
-#include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-AMateria::AMateria( const AMateria & src )
+ICharacter::ICharacter()
+{
+}
+
+ICharacter::ICharacter( const ICharacter & src )
 {
 }
 
@@ -13,7 +17,7 @@ AMateria::AMateria( const AMateria & src )
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-AMateria::~AMateria()
+ICharacter::~ICharacter()
 {
 }
 
@@ -22,7 +26,7 @@ AMateria::~AMateria()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-AMateria &				AMateria::operator=( AMateria const & rhs )
+ICharacter &				ICharacter::operator=( ICharacter const & rhs )
 {
 	//if ( this != &rhs )
 	//{
@@ -31,7 +35,7 @@ AMateria &				AMateria::operator=( AMateria const & rhs )
 	return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, AMateria const & i )
+std::ostream &			operator<<( std::ostream & o, ICharacter const & i )
 {
 	//o << "Value = " << i.getValue();
 	return o;
@@ -41,7 +45,6 @@ std::ostream &			operator<<( std::ostream & o, AMateria const & i )
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

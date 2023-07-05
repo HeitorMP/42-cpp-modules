@@ -4,8 +4,9 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-AMateria::AMateria( std::string const & type ) : _type(type)
+AMateria::AMateria( std::string const & type )
 {
+	this->_type = type;
 }
 
 
@@ -22,21 +23,6 @@ AMateria::~AMateria()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-/* AMateria	&AMateria::operator=( AMateria const & rhs )
-{
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
-	return *this;
-} */
-
-/* std::ostream &			operator<<( std::ostream & o, AMateria const & i )
-{
-	//o << "Value = " << i.getValue();
-	return o;
-} */
-
 
 /*
 ** --------------------------------- METHODS ----------------------------------
@@ -49,6 +35,11 @@ AMateria* AMateria::clone() const
 void    AMateria::use( ICharacter& target )
 {
     std::cout << "AMateria " << this->_type << " used on " << target.getName() << std::endl;
+}
+
+std::string const & AMateria::getType() const
+{
+    return this->_type;
 }
 
 /*

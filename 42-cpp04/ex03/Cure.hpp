@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:20:02 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/04 18:08:42 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:02:34 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,5 @@ class Cure : public AMateria
 		std::string	_type;
 
 };
-
-std::ostream	&operator<<( std::ostream & o, Cure const & i );
 
 #endif /* ************************************************************* CURE_H */

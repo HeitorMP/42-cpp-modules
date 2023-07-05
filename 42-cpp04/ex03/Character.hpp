@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:02:45 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/04 18:10:19 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:37:55 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <iostream>
 # include <string>
 # include "ICharacter.hpp"
+
+# define INVENTORY_SLOTS 4
+# define FLOOR_SLOTS 100
 
 class Character : public ICharacter
 {
@@ -37,11 +40,9 @@ class Character : public ICharacter
 	private:
 		
 		std::string _name;
-		AMateria    *_inventory[4];
-		AMateria	*_floor[100];
+		AMateria    *_inventory[INVENTORY_SLOTS];
+		AMateria	*_floor[FLOOR_SLOTS];
 
 };
-
-std::ostream &			operator<<( std::ostream & o, Character const & i );
 
 #endif /* ******************************************************* CHARACTER_H */

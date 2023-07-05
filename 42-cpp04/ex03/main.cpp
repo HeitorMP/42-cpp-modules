@@ -3,16 +3,16 @@
 #include "AMateria.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
+#include "MateriaSource.hpp"
 
 int main()
 {
-
+/* 
     ICharacter *heitor = new Character("heitor");
     AMateria *ice1 = new Ice();
     AMateria *ice2 = new Ice();
     AMateria *cure1 = new Cure();
     AMateria *cure2 = new Cure();
-
 
     heitor->equip(ice1);
     heitor->equip(cure1);
@@ -20,7 +20,12 @@ int main()
     heitor->equip(cure2);
 
     heitor->use(0, *heitor);
-    /* IMateriaSource* src = new MateriaSource();
+
+    std::cout << heitor->getName() << std::endl;
+    std::cout << ice1->getType() << std::endl;
+
+    delete heitor; */
+    IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
     ICharacter* me = new Character("me");
@@ -35,5 +40,5 @@ int main()
     delete bob;
     delete me;
     delete src;
-    return 0; */
+    return 0;
 }

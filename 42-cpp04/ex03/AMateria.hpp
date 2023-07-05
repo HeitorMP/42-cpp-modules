@@ -11,19 +11,17 @@ class AMateria
 {
 protected:
 
-	std::string const & _type;
+	std::string _type;
 
 public:
 
 	AMateria( std::string const & type );
 	virtual ~AMateria();
-	//[...]
-	//std::string const & getType() const; //Returns the materia type
+
+	std::string const & getType() const; //Returns the materia type
 	virtual AMateria* clone() const = 0;
 	virtual void use(ICharacter &target);
 
 };
-
-//std::ostream &			operator<<( std::ostream & o, AMateria const & i );
 
 #endif /* ******************************************************** AMATERIA_H */

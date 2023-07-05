@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:02:41 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/04 18:23:48 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:53:59 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,27 @@
 
 Character::Character() : _name( "Default" )
 {
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < INVENTORY_SLOTS; i++) {
 		this->_inventory[i] = NULL;
 	}
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < FLOOR_SLOTS; i++) {
 		this->_floor[i] = NULL;
 	}
 }
 
 Character::Character( std::string const & name ) : _name(name)
 {
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < INVENTORY_SLOTS; i++) {
 		this->_inventory[i] = NULL;
 	}
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < FLOOR_SLOTS; i++) {
 		this->_floor[i] = NULL;
 	}
 }
 
 Character::Character( const Character & src )
 {
+	*this = src;
 }
 
 
@@ -47,6 +48,12 @@ Character::Character( const Character & src )
 
 Character::~Character()
 {
+	for ( int i = 0; i < INVENTORY_SLOTS; i++) {
+		delete this->_inventory[i];
+	}
+	for ( int i = 0; i < FLOOR_SLOTS; i++) {
+		delete this->_floor[i];
+	}
 }
 
 
@@ -54,21 +61,26 @@ Character::~Character()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Character &				Character::operator=( Character const & rhs )
+Character	&Character::operator=( Character const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		this->_name = rhs._name;
+		for (int i = 0; i < INVENTORY_SLOTS; i++) {
+			if (rhs._inventory[i] != NULL) {
+				delete ( this->_inventory[i] );
+				this->_inventory[i] = rhs._inventory[i];
+			}
+		}
+		for (int i = 0; i < FLOOR_SLOTS; i++) {
+			if (rhs._inventory[i] != NULL) {
+				delete ( this->_floor[i] );
+				this->_floor[i] = rhs._floor[i];
+			}
+		}
+	}
 	return *this;
 }
-
-std::ostream &			operator<<( std::ostream & o, Character const & i )
-{
-	//o << "Value = " << i.getValue();
-	return o;
-}
-
 
 /*
 ** --------------------------------- METHODS ----------------------------------
@@ -79,7 +91,7 @@ std::string const & Character::getName() const {
 }
 
 void		Character::equip(AMateria* m) {
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < INVENTORY_SLOTS; i++) {
 		if ( this->_inventory[i] == NULL) {
 			this->_inventory[i] = m;
 			return ;
@@ -88,13 +100,26 @@ void		Character::equip(AMateria* m) {
 }
 
 void 		Character::unequip(int idx) {
-	if ( this->_inventory[idx] != NULL) {
+
+	if (idx < 0 || idx >= INVENTORY_SLOTS) {
+		return ;
+	}
+	if ( this->_inventory[idx] != NULL ) {
+		for ( int i = 0; i < FLOOR_SLOTS; i++ ) {
+			if ( this->_floor[i] == NULL) {
+				this->_floor[i] = this->_inventory[idx];
+			}
+		}
 		this->_inventory[idx] = NULL;
-	} //need to save the pointer.
+	}
 }
 
 void		Character::use(int idx, ICharacter& target) {
-	this->_inventory[idx]->use(target);
+	if (idx < 0 || idx >= INVENTORY_SLOTS)
+		return ;
+	if ( this->_inventory[idx] != NULL ) {
+		this->_inventory[idx]->use(target);
+	}
 }
 
 /*

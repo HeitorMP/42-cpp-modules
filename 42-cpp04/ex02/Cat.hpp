@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:13:46 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/02 11:08:49 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/10 09:52:13 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,17 @@ class Cat : public AAnimal
 
 		Cat();
 		Cat( Cat const & src );
-		~Cat();
+		virtual ~Cat();
 
 		Cat		&operator=( Cat const & rhs );
 
 		void	makeSound( void ) const;
+		Brain	*getBrain( void ) const;
+		
 
 	private:
 
-		Brain*	_ideas;
+		Brain*	_brain;
 };
 
 std::ostream &			operator<<( std::ostream & o, Cat const & i );

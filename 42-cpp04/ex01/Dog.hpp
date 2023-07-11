@@ -13,7 +13,7 @@ class Dog : public Animal
 
 		Dog();
 		Dog( Dog const & src );
-		~Dog();
+		virtual ~Dog();
 
 		Dog &		operator=( Dog const & rhs );
 
@@ -21,7 +21,7 @@ class Dog : public Animal
 
 	private:
 
-		Brain*	_ideas;
+		Brain*	_brain;
 
 };
 

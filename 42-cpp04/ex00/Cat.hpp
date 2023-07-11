@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:13:46 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/01 15:39:12 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/10 09:22:25 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Cat : public Animal
 
 		Cat();
 		Cat( Cat const & src );
-		~Cat();
+		virtual ~Cat();
 
 		Cat		&operator=( Cat const & rhs );
 

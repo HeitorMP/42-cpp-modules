@@ -16,6 +16,7 @@ AMateria::AMateria( std::string const & type )
 
 AMateria::~AMateria()
 {
+    return ;
 }
 
 

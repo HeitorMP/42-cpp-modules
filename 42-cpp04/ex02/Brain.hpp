@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 16:25:16 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/01 16:26:48 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:37:33 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ class Brain
 		~Brain();
 
 		Brain &		operator=( Brain const & rhs );
+		
+		//Getter & Setter
+		std::string getIdea( int idx );
+		void		setIdea( int idx, std::string newIdea );
 
 	private:
 
 		std::string _ideas[100];
 
 };
-
-std::ostream	&operator<<( std::ostream & o, Brain const & i );
 
 #endif /* *********************************************************** BRAIN_H */

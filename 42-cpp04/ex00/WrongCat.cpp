@@ -16,12 +16,12 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-WrongCat::WrongCat() : Animal( "WrongCat" )
+WrongCat::WrongCat() : WrongAnimal( "WrongCat" )
 {
 	std::cout << "Default WrongCat Constructor called!" << std::endl;
 }
 
-WrongCat::WrongCat( const WrongCat & src ) : Animal( "WrongCat" )
+WrongCat::WrongCat( const WrongCat & src ) : WrongAnimal( "WrongCat" )
 {
 	this->_type = src._type;
 	std::cout << "WrongCat Copy Constructor called!" << std::endl;

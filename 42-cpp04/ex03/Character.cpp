@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:02:41 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/05 15:53:59 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:15:21 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void		Character::equip(AMateria* m) {
 	for (int i = 0; i < INVENTORY_SLOTS; i++) {
 		if ( this->_inventory[i] == NULL) {
 			this->_inventory[i] = m;
+			std::cout << m->getType() << " was add to your inventory!" << std::endl;
 			return ;
 		}
 	}
@@ -108,6 +109,9 @@ void 		Character::unequip(int idx) {
 		for ( int i = 0; i < FLOOR_SLOTS; i++ ) {
 			if ( this->_floor[i] == NULL) {
 				this->_floor[i] = this->_inventory[idx];
+				std::cout << this->_inventory[idx]->getType() << " was thrown away!" << std::endl;
+				this->_inventory[idx] = NULL;
+				return ;
 			}
 		}
 		this->_inventory[idx] = NULL;
@@ -115,10 +119,14 @@ void 		Character::unequip(int idx) {
 }
 
 void		Character::use(int idx, ICharacter& target) {
-	if (idx < 0 || idx >= INVENTORY_SLOTS)
+	if (idx < 0 || idx >= INVENTORY_SLOTS) {
+		std::cout << "You are trying to use a invalid slot!" << std::endl;
 		return ;
+	}
 	if ( this->_inventory[idx] != NULL ) {
 		this->_inventory[idx]->use(target);
+	} else {
+		std::cout << "You are trying to use a empty slot!" << std::endl;
 	}
 }
 

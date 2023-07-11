@@ -6,12 +6,14 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:56:40 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/01 16:23:38 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/10 09:22:01 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include "WrongAnimal.hpp"
 #include "Cat.hpp"
+#include "WrongCat.hpp"
 #include "Dog.hpp"
 
 int main(int argc, char const *argv[])
@@ -31,8 +33,14 @@ int main(int argc, char const *argv[])
     j->makeSound();
     meta->makeSound();
 
-    
-    std::cout << meta << " " << i << " " << j << std::endl;
+    const WrongAnimal* wcat = new WrongCat();
+
+    wcat->makeSound();
+
+    delete ( i );
+    delete ( j );
+    delete ( meta );
+    delete ( wcat );
     return 0;
 
 }

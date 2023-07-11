@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:42:55 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/05 14:08:32 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:13:20 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ MateriaSource	&MateriaSource::operator=( MateriaSource const & rhs )
 		for (int i = 0; i < LEARN_SLOTS; i++) {
 			if (rhs._materiasLearned[i] != NULL) {
 				delete ( this->_materiasLearned[i] );
-				this->_materiasLearned[i] = rhs._materiasLearned[i];
+				memcpy(this->_materiasLearned, rhs._materiasLearned, LEARN_SLOTS * sizeof(AMateria *));
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 16:34:42 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/02 11:01:53 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/10 09:45:11 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,20 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Dog::Dog() : Animal( "Dog" )
+Dog::Dog()
 {
+	this->_type = "Dog";
+	this->_brain = new Brain();
 	std::cout << "Default Dog Constructor called!" << std::endl;
-	this->_ideas = new Brain();
 }
 
-Dog::Dog( const Dog & src ) : Animal( "Dog" )
+Dog::Dog( const Dog & src ) : Animal(src)
 {
-	this->_type = src._type;
+	this->_brain = new Brain();
 	for (int i = 0; i < 100; i++) {
-		this->_ideas[i] = src._ideas[i];
+		this->_brain->setIdea(i, src._brain->getIdea(i));
 	}
+	*this = src;
 	std::cout << "Dog Copy Constructor called!" << std::endl;
 }
 
@@ -38,7 +40,7 @@ Dog::Dog( const Dog & src ) : Animal( "Dog" )
 
 Dog::~Dog()
 {
-	delete ( this->_ideas );
+	delete ( this->_brain );
 	std::cout << "Dog Destructor called!" << std::endl;
 }
 
@@ -51,10 +53,9 @@ Dog	&Dog::operator=( Dog const & rhs )
 {
 	if ( this != &rhs )
 	{
-		this->_type = rhs._type;
-		for (int i = 0; i < 100; i++) {
-			this->_ideas[i] = rhs._ideas[i];
-		}
+		if (this->_brain != NULL)
+			delete ( this->_brain );
+		this->_brain = new Brain(*rhs._brain);
 	}
 	return *this;
 }

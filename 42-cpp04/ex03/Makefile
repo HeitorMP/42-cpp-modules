@@ -20,7 +20,7 @@ OBJS		= $(SRCS:%.cpp=$(OBJSDIR)/%.o)
 
 # Compiler options
 CC			= c++
-CFLAGS		= -g #-Wall -Wextra -Werror -std=c++98
+CFLAGS		= -g -Wall -Wextra -Werror -std=c++98
 all: ${NAME} ${INCLUDES}
 
 ${NAME}: ${OBJS}

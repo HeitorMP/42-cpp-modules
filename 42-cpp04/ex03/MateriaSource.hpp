@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:42:58 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/05 14:08:42 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:13:10 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MATERIASOURCE_HPP
 
 # include <iostream>
-# include <string>
+# include <cstring>
 
 # define LEARN_SLOTS 4
 

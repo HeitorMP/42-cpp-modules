@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 16:25:12 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/07/02 11:01:28 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/07/10 09:45:12 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 
 Brain::Brain()
 {
+	for (int i = 0; i < 100; i++) {
+		this->_ideas[i] = "Unoriginal idea";
+	}
 	std::cout << "Default Brain Constructor called!" << std::endl;
 }
 
@@ -53,19 +56,16 @@ Brain &				Brain::operator=( Brain const & rhs )
 	return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, Brain const & i )
-{
-	(void)i;
-	//o << "Value = " << i.getValue();
-	return o;
-}
-
-
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+std::string Brain::getIdea( int idx ) {
+	return (this->_ideas[idx]);
+}
 
-
+void		 Brain::setIdea( int idx, std::string newIdea ) {
+	this->_ideas[idx] = newIdea;
+}
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

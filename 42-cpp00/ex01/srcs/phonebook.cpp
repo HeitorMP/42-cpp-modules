@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:14:27 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/06/16 23:32:26 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/08/07 13:04:32 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 void exitBook( std::string user ) {
     std::cout << "\033[2J\033[1;1H";
     std::cout << "\nbye "<< user << " and thanks for using amazing phonebook" << std::endl;
-    exit (0);
 }
 
 void getcommand(char *user)

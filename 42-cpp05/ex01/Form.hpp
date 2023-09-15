@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:17:49 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/09/13 20:23:13 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:03:46 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Form {
 
 public:
     Form();
-    Form( const std::string name, int grade);
+    Form( const std::string name, int grade );
     Form( Form const & src );
     ~Form();
 
@@ -43,6 +43,7 @@ private:
     const std::string _name;
     bool              _isSigned;
     int               _gradeToExecute;
+    int               _gradeToSign;
 
 };
 

@@ -6,13 +6,14 @@
 
 Bureaucrat::Bureaucrat() : _name( "default" ), _grade( 150 )
 {
-	std::cout << "Default constructor called!" << std::endl;
+	std::cout << "Bureaucrat default constructor called!" << std::endl;
 	return ;
 }
 
 
 Bureaucrat::Bureaucrat( std::string name, int grade ) : _name( name )
 {
+	std::cout << "Bureaucrat parameter constructor called!" << std::endl;
 	if (grade > 150)
 	{
 		std::cout << "Grade is lower than 150, adjusting to 150" << std::endl;

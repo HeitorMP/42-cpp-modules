@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:30:57 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/09/15 14:37:37 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:42:27 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,26 @@ int main(int argc, char const *argv[])
 
     Bureaucrat heitor1("Heitor1", 100);
     Bureaucrat joao1("Joao1", 5);
-    try {
+    try
+    {
         heitor1.decrementGrade();
     }
-    catch ( const Bureaucrat::GradeTooLowException &err ) {
+    catch ( const Bureaucrat::GradeTooLowException &err )
+    {
         std::cout << err.what();
     }
 
-    try {
+    try
+    {
         joao1.incrementGrade();
     }
-    catch ( const Bureaucrat::GradeTooHighException &err ) {
+    catch ( const Bureaucrat::GradeTooHighException &err )
+    {
         std::cout << err.what();
     }
 
     std::cout << heitor1 << std::endl;
     std::cout << joao1 << std::endl;
-
 
     Bureaucrat teste("teste", -1);
     Bureaucrat teste1("teste1", 151);

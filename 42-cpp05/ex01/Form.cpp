@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 19:00:14 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/09/15 14:03:01 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:26:58 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,3 @@ std::ostream &  operator<<( std::ostream & o, Form & i )
 	o << "Grade to sign: " << i.getGradeToSign();
 	return o;
 }
-

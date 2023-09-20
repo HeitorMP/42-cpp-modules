@@ -26,25 +26,25 @@ int main(int argc, char const *argv[])
   }
 
 
-  const Animal* j = new Dog();
-  const Animal* i = new Cat();
+  // const Animal* j = new Dog();
+  // const Animal* i = new Cat();
 
-  delete j; //should not create a leak
-  delete i;
+  // delete j; //should not create a leak
+  // delete i;
 
-  Animal *animals[4] = { new Dog(), new Dog(), new Cat(), new Cat() };
-  for (int i = 0; i < 4; i++)
-  delete animals[i];
+  // Animal *animals[4] = { new Dog(), new Dog(), new Cat(), new Cat() };
+  // for (int i = 0; i < 4; i++)
+  // delete animals[i];
 
 
-  Cat* cat = new Cat();
-  Cat* copy_cat = new Cat(*cat);
+  // Cat* cat = new Cat();
+  // Cat* copy_cat = new Cat(*cat);
 
-  std::cout << cat->getBrain() << std::endl;
-  delete ( cat );
+  // std::cout << cat->getBrain() << std::endl;
+  // delete ( cat );
 
-  std::cout << copy_cat->getBrain() << std::endl;
-  delete ( copy_cat );
+  // std::cout << copy_cat->getBrain() << std::endl;
+  // delete ( copy_cat );
   return 0;
 
 }

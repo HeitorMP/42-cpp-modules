@@ -89,6 +89,11 @@ void	Bureaucrat::decrementGrade( void )
 	this->_grade++;
 }
 
+void	Bureaucrat::signForm( AForm &form )
+{
+	form.beSigned( *this );
+}
+
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

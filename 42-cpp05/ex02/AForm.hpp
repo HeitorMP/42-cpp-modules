@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,27 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include <iostream>
 # include "Bureaucrat.hpp"
 
-class Form {
+class Bureaucrat;
+
+class AForm {
 
 public:
 
-    Form();
-    Form( std::string name, int signGrade, int executeGrade );
-    Form( Form const & src );
-    ~Form();
+    AForm();
+    AForm( std::string name, int signGrade, int executeGrade );
+    AForm( AForm const & src );
+    virtual ~AForm();
 
     std::string getName( void ) const;
     int         getGradeToSign( void ) const;
     int         getGradeToExecute( void ) const;
     bool        getIsSigned( void ) const;
-
-    void        beSigned( Bureaucrat &bureau );
+    
+    void         beSigned( Bureaucrat &bureau );
+    virtual void execute(Bureaucrat const & executor) const = 0;
     
     class GradeTooHighException : public std::exception {
 		public:
@@ -40,8 +43,13 @@ public:
 		public:
 			virtual const char *what() const throw();
 	};
+    class FormNotSignedException : public std::exception
+	{
+		public:
+			virtual const char *what() const throw();
+	};
 
-    Form &		operator=( const Form & rhs );
+    AForm &		operator=( const AForm & rhs );
 
 private:
 
@@ -52,6 +60,6 @@ private:
 
 };
 
-std::ostream &	operator<<( std::ostream & o, Form & i );
+std::ostream &	operator<<( std::ostream & o, AForm & i );
 
 #endif

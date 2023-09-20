@@ -6,15 +6,15 @@
 #    By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/06 14:36:52 by hmaciel-          #+#    #+#              #
-#    Updated: 2023/07/06 14:38:13 by hmaciel-         ###   ########.fr        #
+#    Updated: 2023/09/20 14:14:51 by hmaciel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Folders and Names
 NAME		= form
 SRCDIR		= .
-SRCS		= main.cpp Bureaucrat.cpp Form.cpp
-INCLUDES	= Bureaucrat.hpp
+SRCS		= main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp
+INCLUDES	= Bureaucrat.hpp PresidentialPardonForm.hpp AForm.hpp
 OBJSDIR		= objs
 OBJS		= $(SRCS:%.cpp=$(OBJSDIR)/%.o)
 

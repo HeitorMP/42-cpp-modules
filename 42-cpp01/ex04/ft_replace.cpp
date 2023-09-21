@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 18:05:15 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/06/18 19:07:26 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/09/21 13:09:46 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int ft_replace(int argc, char const *argv[]) {
 		std::cerr << "Can't create file, check permissions!" << std::endl;
         return (3);
     }
-    
+
     dest_file << fullStr;
     dest_file.close();
     src_file.close();

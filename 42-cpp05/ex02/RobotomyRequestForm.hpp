@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,28 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
-# include "AForm.hpp"
 # include <iostream>
+# include <cstdlib>
+# include "AForm.hpp"
 
-class PresidentialPardonForm : public AForm
+class RobotomyRequestForm : public AForm
 {
     public:
-        PresidentialPardonForm( std::string const target );
-        PresidentialPardonForm( PresidentialPardonForm const & src );
-        ~PresidentialPardonForm();
+        RobotomyRequestForm( std::string const target );
+        RobotomyRequestForm( RobotomyRequestForm const & src );
+        ~RobotomyRequestForm();
 
         std::string           getTarget( void ) const;
 
-        virtual void           execute( Bureaucrat const &bureaucrat ) const;
-        PresidentialPardonForm &operator=( const PresidentialPardonForm & rhs );
+        virtual void            execute( Bureaucrat const &bureaucrat ) const;
+        RobotomyRequestForm &   operator=( const RobotomyRequestForm & rhs );
 
     private:
         const std::string   _target;
 };
 
-std::ostream    &operator<<( std::ostream &o, PresidentialPardonForm & i );
+std::ostream    &operator<<( std::ostream &o, RobotomyRequestForm & i );
 
 #endif

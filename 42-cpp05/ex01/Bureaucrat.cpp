@@ -10,25 +10,22 @@ Bureaucrat::Bureaucrat() : _name( "default" ), _grade( 150 )
 	return ;
 }
 
-
 Bureaucrat::Bureaucrat( std::string name, int grade ) : _name( name )
 {
 	std::cout << "Bureaucrat parameter constructor called!" << std::endl;
-	if (grade > 150)
+	if ( grade > 150 )
 	{
-		std::cout << "Grade is lower than 150, adjusting to 150" << std::endl;
-		grade = 150;
+		throw Bureaucrat::GradeTooLowException();
 	}
-	if (grade < 1)
+	if ( grade < 1 )
 	{
-		std::cout << "Grade is higher than 1, adjusting to 1" << std::endl;
-		grade = 1;
+		throw Bureaucrat::GradeTooHighException();
 	}
 	this->_grade = grade;
 	return ;
 }
 
-Bureaucrat::Bureaucrat( const Bureaucrat & src )
+Bureaucrat::Bureaucrat( const Bureaucrat & src ) : _name( src.getName() ) , _grade( src.getGrade() )
 {
 	std::cout << "Bureaucrat copy constructor called!" << std::endl;
 	*this = src;
@@ -48,15 +45,15 @@ Bureaucrat::~Bureaucrat()
 */
 Bureaucrat &	Bureaucrat::operator=( const Bureaucrat & rhs )
 {
-	if ( this != &rhs ) {
-		this->_grade = rhs.getGrade();
-	}
+	 if ( this != &rhs ) {
+	 	this->_grade = rhs.getGrade();
+	 }
 	return *this;
 }
 
 std::ostream &	operator<<( std::ostream & o, Bureaucrat & i )
 {
-	o << i.getName() << ", bureaucrat grade " << i.getGrade();
+	o << i.getName() << ": bureaucrat grade " << i.getGrade();
 	return o;
 }
 
@@ -66,16 +63,17 @@ std::ostream &	operator<<( std::ostream & o, Bureaucrat & i )
 
 const char *Bureaucrat::GradeTooHighException::what() const throw() 
 {
-	return ("Cannot increment the grade higher than 1.\n");
+	return ( "Grade to high.\n" );
 }
 const char *Bureaucrat::GradeTooLowException::what() const throw() 
 {
-	return ("Cannot decrement the grade lower than 150.\n");
+	return ( "Grade to Low.\n" );
 }
 
 void	Bureaucrat::incrementGrade( void )
 {
-	if ( ( this->_grade - 1 ) < MAX_GRADE ) {
+	if ( ( this->_grade - 1 ) < MAX_GRADE )
+	{
 		throw Bureaucrat::GradeTooHighException();
 	}
 	this->_grade--;
@@ -83,10 +81,17 @@ void	Bureaucrat::incrementGrade( void )
 
 void	Bureaucrat::decrementGrade( void )
 {
-	if ( ( this->_grade + 1 ) > MIN_GRADE) {
+	if ( ( this->_grade + 1 ) > MIN_GRADE)
+	{
 		throw Bureaucrat::GradeTooLowException();
 	}
 	this->_grade++;
+}
+
+
+void	Bureaucrat::signForm( Form &form )
+{
+	form.beSigned( *this );
 }
 
 /*
@@ -95,12 +100,12 @@ void	Bureaucrat::decrementGrade( void )
 
 std::string	Bureaucrat::getName( void ) const
 {
-	return (this->_name);
+	return ( this->_name );
 }
 
 int			Bureaucrat::getGrade( void ) const
 {
-	return (this->_grade);
+	return ( this->_grade );
 }
 
 /* ************************************************************************** */

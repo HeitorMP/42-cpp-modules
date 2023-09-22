@@ -6,22 +6,30 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 19:00:14 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/09/19 09:26:58 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/09/22 18:19:15 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 /* Constructors */
-Form::Form() : _name("default"), _gradeToExecute(150), _gradeToSign(150)
+Form::Form() : _name( "default" ), _gradeToExecute( 150 ), _gradeToSign( 150 )
 {
     std::cout << "Form default constructor called!" << std::endl;
     this->_isSigned = false;
     return ;
 }
 
-Form::Form( std::string name, int executeGrade, int signGrade) : _name(name), _gradeToExecute(executeGrade), _gradeToSign(signGrade)
+Form::Form( std::string name, int executeGrade, int signGrade) : _name( name ), _gradeToExecute( executeGrade ), _gradeToSign( signGrade )
 {
+    if ( executeGrade > 150  || signGrade > 150 )
+	{
+		throw Form::GradeTooLowException();
+	}
+	if ( executeGrade < 1  || signGrade < 1 )
+	{
+		throw Form::GradeTooHighException();
+	}
     std::cout << "Form parameter constructor called!" << std::endl;
     this->_isSigned = false;
     return ;
@@ -34,7 +42,8 @@ Form::Form( Form const & src ) : _name( src.getName() ), _gradeToExecute( src.ge
     return ;
 }
 
-Form::~Form() {
+Form::~Form()
+{
     return ;
 }
 

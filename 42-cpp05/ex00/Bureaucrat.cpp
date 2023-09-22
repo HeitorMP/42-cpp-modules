@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 18:41:42 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:51:40 by hmaciel-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
 
 /*
@@ -98,16 +86,6 @@ void	Bureaucrat::decrementGrade( void )
 		throw Bureaucrat::GradeTooLowException();
 	}
 	this->_grade++;
-}
-
-void	Bureaucrat::signForm( AForm &form )
-{
-	form.beSigned( *this );
-}
-
-void	Bureaucrat::executeForm( AForm const &form )
-{
-	form.execute(*this);
 }
 
 /*

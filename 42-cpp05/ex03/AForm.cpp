@@ -13,14 +13,14 @@
 #include "AForm.hpp"
 
 /* Constructors */
-AForm::AForm() : _name( "default" ), _gradeToExecute( 150 ), _gradeToSign( 150 )
+AForm::AForm() : _name("default"), _gradeToExecute(150), _gradeToSign(150)
 {
     std::cout << "AForm default constructor called!" << std::endl;
     this->_isSigned = false;
     return ;
 }
 
-AForm::AForm( std::string name, int executeGrade, int signGrade) : _name( name ), _gradeToExecute( executeGrade ), _gradeToSign( signGrade )
+AForm::AForm( std::string name, int executeGrade, int signGrade) : _name(name), _gradeToExecute(executeGrade), _gradeToSign(signGrade)
 {
     std::cout << "AForm parameter constructor called!" << std::endl;
     if ( executeGrade > 150  || signGrade > 150 )
@@ -109,7 +109,7 @@ std::ostream &  operator<<( std::ostream & o, AForm & i )
 {
 	o << "AForm Name: " << i.getName() << std::endl;
 	o << "AForm is signed?: " << i.getIsSigned() << std::endl;
-	o << "Grade to execute: " << i.getGradeToExecute() << std::endl;
+	o << "Grade to execute: " << i.getGradeToExecute() << std::endl;;
 	o << "Grade to sign: " << i.getGradeToSign();
 	return o;
 }

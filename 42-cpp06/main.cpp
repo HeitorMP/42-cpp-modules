@@ -4,7 +4,8 @@
 #include <limits>
 #include <string>
 #include <stdlib.h>
-#include <string.h>
+#include <string>
+#include <sstream>
 
 bool    startsWith( std::string src, std::string to_find )
 {
@@ -49,9 +50,8 @@ bool    isSurroundByNumbers( std::string src, char to_find )
 
 bool    isChar( std::string charCandidate )
 {
-   return ( charCandidate.length() == 1 && !isdigit( charCandidate[0] ) );
+   return ( charCandidate.size() == 1 && !isdigit( charCandidate[0] ) );
 }
-
 
 bool    isInt( std::string intCandidate )
 {
@@ -72,6 +72,10 @@ bool    isInt( std::string intCandidate )
 
 bool    isFloat( std::string floatCandidate )
 {
+    if ( floatCandidate == "-inff" || floatCandidate == "+inff" || floatCandidate == "nanf" )
+    {
+        return ( true );
+    }
     if ( floatCandidate.find_first_not_of( "-.f0123456789" ) != std::string::npos )
     {   
         return ( false );
@@ -84,7 +88,7 @@ bool    isFloat( std::string floatCandidate )
     {
         return ( false );
     }
-    if ( count_if(floatCandidate, '-') ==  1 && floatCandidate[0] != '-' )
+    if ( count_if(floatCandidate, '-') ==  1 && !startsWith( floatCandidate, "-" ) )
     {
         return ( false );
     }
@@ -97,6 +101,10 @@ bool    isFloat( std::string floatCandidate )
 
 bool    isDouble( std::string doubleCandidate )
 {
+    if ( doubleCandidate == "-inf" || doubleCandidate == "+inf" || doubleCandidate == "nan" )
+    {
+        return ( true );
+    }
     if ( doubleCandidate.find_first_not_of( "-.0123456789" ) != std::string::npos )
     {   
         return ( false );
@@ -105,7 +113,7 @@ bool    isDouble( std::string doubleCandidate )
     {
         return ( false );
     }
-    if ( count_if(doubleCandidate, '-') ==  1 && doubleCandidate[0] != '-' )
+    if ( count_if(doubleCandidate, '-') ==  1 && !startsWith( doubleCandidate, "-" ) )
     {
         return ( false );
     }
@@ -113,10 +121,11 @@ bool    isDouble( std::string doubleCandidate )
     {
         return ( false );
     }
-    return ( true );
+    return ( true );    
 }
 
 
+#include <bits/stdc++.h>
 
 int main( int argc, char const *argv[] )
 {
@@ -133,6 +142,42 @@ int main( int argc, char const *argv[] )
 
     test = isDouble( my_str );
     std::cout << "is double: " << ((test == 0) ? "false" : "true") << std::endl;
+
+    //2147483647
+    //strtof - float
+    //strtod - double
+    //strtold - double
+    // long int n = atoll( argv[1] );
+    // std::cout << n << std::endl;
+    // if ( n < -2147483648 || n > 2147483647 )
+    //     std::cout << "overflow" << std::endl;
+    
+    long double d = strtold( argv[1], NULL );
+    std::cout << d << std::endl;
+    std::cout << std::numeric_limits<double>::min() << " " << std::numeric_limits<double>::max() << std::endl;
+    if ( d > std::numeric_limits<double>::max() || d < std::numeric_limits<double>::min() )
+        std::cout << "overflow" << std::endl;
+
+    //possibility to check overflows
+    // std::stringstream compare;
+    // compare << n << std::endl;;
+
+    // if ( compare.str() != my_str )
+    //     std::cout << "overflow" << std::endl;
+
+
+
+    // char c = static_cast<char>(n);
+    // std::cout << c << std::endl;
+
+    // int i = static_cast<int>(n);
+    // std::cout << i << std::endl;
+    
+    // double d = static_cast<double>(n);
+    // std::cout << d << std::endl;
+    
+    // float f = static_cast<float>(n);
+    // std::cout << f << std::endl;
 
     return ( 0 );
 }

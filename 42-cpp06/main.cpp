@@ -6,13 +6,36 @@
 #include <stdlib.h>
 #include <string>
 #include <sstream>
+#include <iomanip>
 
-bool    startsWith( std::string src, std::string to_find )
+/**
+ * @brief Check if a string starts with a specific substring.
+ *
+ * This function determines whether a given string starts with a specified substring.
+ * It returns true if the source string begins with the provided substring; otherwise,
+ * it returns false.
+ *
+ * @param src The source string to check for the starting substring.
+ * @param to_find The substring to look for at the beginning of the source string.
+ * @return True if the source string starts with the specified substring, false otherwise.
+ */
+bool    startsWith( std::string const &src, std::string const &to_find )
 {
     return ( std::string::npos && src.rfind( to_find, 0 ) == 0 );
 }
 
-bool    strHasAll( std::string src, std::string char_set )
+/**
+ * @brief Check if a string contains all characters from a character set.
+ *
+ * This function determines whether a given string contains all the characters
+ * from a specified character set. It returns true if all characters in the
+ * character set are present in the source string; otherwise, it returns false.
+ *
+ * @param src The source string to check for character occurrences.
+ * @param char_set The character set to compare against the source string.
+ * @return True if all characters from the character set are found in the source string, false otherwise.
+ */
+bool    strHasAll( std::string const &src, std::string const &char_set )
 {
     if ( char_set.size() < 1 || src.size() < 1 || src.size() < char_set.size() )
         return ( false );
@@ -25,7 +48,17 @@ bool    strHasAll( std::string src, std::string char_set )
     return ( true );
 }
 
-size_t  count_if( std::string src, char to_find )
+/**
+ * @brief Count occurrences of a character in a string.
+ *
+ * This function iterates through a given string and counts how many times the
+ * specified character appears in that string.
+ *
+ * @param src The string in which character occurrences will be counted.
+ * @param to_find The character to be counted in `src`.
+ * @return The number of occurrences of the character `to_find` in the string `src`.
+ */
+size_t  ft_count_if( std::string const &src, char const &to_find )
 {
     int count = 0;
 
@@ -35,7 +68,18 @@ size_t  count_if( std::string src, char to_find )
     return ( count );
 }
 
-bool    isSurroundByNumbers( std::string src, char to_find )
+/**
+ * @brief Check if a character in a string is surrounded by digits.
+ *
+ * This function checks if a specific character in a given string is surrounded by
+ * digits on both sides. It returns true if the character is flanked by digits;
+ * otherwise, it returns false.
+ *
+ * @param src The source string in which to search for the character.
+ * @param to_find The character to check for within the source string.
+ * @return True if the character is surrounded by digits, false otherwise.
+ */
+bool    isSurroundByDigits( std::string const &src, char const &to_find )
 {
     if ( src.find( to_find ) == std::string::npos )
         return ( false );
@@ -48,29 +92,65 @@ bool    isSurroundByNumbers( std::string src, char to_find )
     return ( false );
 }
 
-bool    isChar( std::string charCandidate )
+/**
+ * @brief Check if a string representation of a number exceeds the specified type's limits.
+ *
+ * This function parses a string containing a number and checks if it exceeds the limits
+ * of the specified type (CHAR, INT, FLOAT, or DOUBLE). It returns true if the parsed number
+ * exceeds the type's limits; otherwise, it returns false. If the specified type is not found,
+ * an error message is printed to the standard error stream.
+ *
+ * @param src The string containing the number to check.
+ * @param type A string indicating the target type (CHAR, INT, FLOAT, or DOUBLE).
+ * @return True if the parsed number exceeds the specified type's limits, false otherwise.
+ */
+bool    isOverload( std::string const &src, std::string const &type )
+{
+    long double longNumber = strtold( src.c_str(), NULL );
+
+    if ( type == "CHAR" )
+    {
+        char c = longNumber;
+        return (c < 32 || c > 127);
+    }
+    else if ( type == "INT" )
+        return (  longNumber < std::numeric_limits<int>::min() || longNumber > std::numeric_limits<int>::max() );
+    else if ( type == "FLOAT" )
+        return ( longNumber < std::numeric_limits<float>::min() || longNumber > std::numeric_limits<float>::max() );
+    else if ( type == "DOUBLE" )
+        return ( longNumber < std::numeric_limits<double>::min() || longNumber > std::numeric_limits<double>::max() );
+    
+    std::cerr << "err: overload function: type not found" << std::endl;
+    return ( false );
+}
+
+bool    isChar( std::string const &charCandidate )
 {
    return ( charCandidate.size() == 1 && !isdigit( charCandidate[0] ) );
 }
 
-bool    isInt( std::string intCandidate )
+bool    isInt( std::string const &intCandidate )
 {
+    if ( intCandidate.size() < 1 )
+    {
+        return ( false );
+    }
     if ( intCandidate.find_first_not_of( "-0123456789" ) != std::string::npos )
     {
         return ( false );
     }
-    if ( count_if( intCandidate, '-') > 1 )
+    if ( ft_count_if( intCandidate, '-') > 1 )
     {
         return ( false );
     }
-    if ( count_if( intCandidate, '-') == 1 && !startsWith( intCandidate, "-") )
+    if ( ft_count_if( intCandidate, '-') == 1 && !startsWith( intCandidate, "-") )
     {
          return ( false );
     }
     return ( true );
 }
 
-bool    isFloat( std::string floatCandidate )
+bool    isFloat( std::string const &floatCandidate )
 {
     if ( floatCandidate == "-inff" || floatCandidate == "+inff" || floatCandidate == "nanf" )
     {
@@ -80,7 +160,7 @@ bool    isFloat( std::string floatCandidate )
     {   
         return ( false );
     }
-    if ( count_if(floatCandidate, '.') != 1 || count_if(floatCandidate, '-') > 1 || count_if(floatCandidate, 'f') > 1 )
+    if ( ft_count_if(floatCandidate, '.') != 1 || ft_count_if(floatCandidate, '-') > 1 || ft_count_if(floatCandidate, 'f') > 1 )
     {
         return ( false );
     }
@@ -88,18 +168,18 @@ bool    isFloat( std::string floatCandidate )
     {
         return ( false );
     }
-    if ( count_if(floatCandidate, '-') ==  1 && !startsWith( floatCandidate, "-" ) )
+    if ( ft_count_if(floatCandidate, '-') ==  1 && !startsWith( floatCandidate, "-" ) )
     {
         return ( false );
     }
-    if ( !isSurroundByNumbers( floatCandidate, '.') )
+    if ( !isSurroundByDigits( floatCandidate, '.') )
     {
         return ( false );
     }
     return ( true );
 }
 
-bool    isDouble( std::string doubleCandidate )
+bool    isDouble( std::string const &doubleCandidate )
 {
     if ( doubleCandidate == "-inf" || doubleCandidate == "+inf" || doubleCandidate == "nan" )
     {
@@ -109,15 +189,15 @@ bool    isDouble( std::string doubleCandidate )
     {   
         return ( false );
     }
-    if ( count_if(doubleCandidate, '.') != 1 || count_if(doubleCandidate, '-') > 1 )
+    if ( ft_count_if(doubleCandidate, '.') != 1 || ft_count_if(doubleCandidate, '-') > 1 )
     {
         return ( false );
     }
-    if ( count_if(doubleCandidate, '-') ==  1 && !startsWith( doubleCandidate, "-" ) )
+    if ( ft_count_if(doubleCandidate, '-') ==  1 && !startsWith( doubleCandidate, "-" ) )
     {
         return ( false );
     }
-    if ( !isSurroundByNumbers( doubleCandidate, '.') )
+    if ( !isSurroundByDigits( doubleCandidate, '.') )
     {
         return ( false );
     }
@@ -125,59 +205,134 @@ bool    isDouble( std::string doubleCandidate )
 }
 
 
-#include <bits/stdc++.h>
 
+void    convertChar( std::string src )
+{
+    char    c = src[0];
+    int     i = static_cast<int>( c );
+    float   f = static_cast<float>( c );
+    double  d = static_cast<double>( c );
+
+    if ( isOverload( src, "CHAR") )
+        std::cout << "char: Non displayable" << std::endl;
+    else
+        std::cout << "char: '" << c << "'" << std::endl;
+    std::cout << "int: " << i << std::endl;
+    std::cout << std::fixed << "float: " << std::setprecision(1) << f << "f" << std::endl;
+    std::cout << std::fixed << "double: " << std::setprecision(1) << d << std::endl;
+}
+
+void    convertInt( std::string src )
+{
+   
+
+    int     i = atoi( src.c_str() );
+    char    c = static_cast<char>( i );
+    float   f = static_cast<float>( i );
+    double  d = static_cast<double>( i );
+
+    if ( isOverload( src, "CHAR") )
+        std::cout << "char: Non displayable" << std::endl;
+    else
+        std::cout << "char: '" << c << "'" << std::endl;
+    
+    if ( isOverload( src, "INT") )
+        std::cout << "int: overload" << std::endl;
+    else
+        std::cout << "int: " << i << std::endl;
+    
+    if ( isOverload( src, "FLOAT") )
+        std::cout << "float: overload" << std::endl;
+    else
+        std::cout << std::fixed << "float: " << std::setprecision(1) << f << "f" << std::endl;
+    if ( isOverload( src, "DOUBLE") )
+        std::cout << "double: overload" << std::endl;
+    else
+        std::cout << std::fixed << "double: " << std::setprecision(1) << d << std::endl;
+}
+
+
+void    convertFloat( std::string src )
+{
+    long double longNumber = strtold( src.c_str(), NULL );
+
+    float   f = strtof( src.c_str(), NULL );
+    char    c = static_cast<char>( f );
+    int     i = static_cast<int>( f );
+    double  d = static_cast<double>( f );
+
+    if ( isOverload( src, "CHAR") )
+        std::cout << "char: Non displayable" << std::endl;
+    else
+        std::cout << "char: " << c << std::endl;
+    
+    if ( longNumber < std::numeric_limits<int>::min() || longNumber > std::numeric_limits<int>::max() )
+        std::cout << "int: overload" << std::endl;
+    else
+        std::cout << "int: " << i << std::endl;
+    
+    if ( longNumber < std::numeric_limits<float>::min() || longNumber > std::numeric_limits<float>::max() )
+        std::cout << "float: overload" << std::endl;
+    else
+        std::cout << std::fixed << "float: " << std::setprecision(1) << f << "f" << std::endl;
+
+    if ( longNumber < std::numeric_limits<double>::min() || longNumber > std::numeric_limits<double>::max() )
+        std::cout << "double: overload" << std::endl;
+    else
+        std::cout << std::fixed << "double: " << std::setprecision(1) << d << std::endl;
+}
+
+void    convertDouble( std::string src )
+{
+    long double longNumber = strtold( src.c_str(), NULL );
+
+    double  d = strtod( src.c_str(), NULL );
+    char    c = static_cast<char>( d );
+    int     i = static_cast<int>( d );
+    float   f = static_cast<float>( d );
+
+    if ( isOverload( src, "CHAR") )
+        std::cout << "char: Non displayable" << std::endl;
+    else
+        std::cout << "char: " << c << std::endl;
+    
+    if ( longNumber < std::numeric_limits<int>::min() || longNumber > std::numeric_limits<int>::max() )
+        std::cout << "int: overload" << std::endl;
+    else
+        std::cout << "int: " << i << std::endl;
+    
+    if ( longNumber < std::numeric_limits<float>::min() || longNumber > std::numeric_limits<float>::max() )
+        std::cout << "float: overload" << std::endl;
+    else
+        std::cout << std::fixed << "float: " << std::setprecision(1) << f << "f" << std::endl;
+
+    if ( longNumber < std::numeric_limits<double>::min() || longNumber > std::numeric_limits<double>::max() )
+        std::cout << "double: overload" << std::endl;
+    else
+        std::cout << std::fixed << "double: " << std::setprecision(1) << d << std::endl;
+}
+
+void    convert ( char const src[] )
+{
+    std::string my_str( src );
+
+     if ( isChar( my_str ) )
+        convertChar( my_str );
+    else if ( isInt( my_str ) )
+        convertInt( my_str );
+    else if ( isFloat( my_str ))
+        convertFloat( my_str );
+    else if ( isDouble( my_str ) )
+        convertDouble( my_str );
+    else
+        std::cout << "Unknown type" << std::endl;
+}
 int main( int argc, char const *argv[] )
 {
-    std::string my_str( argv[1] );
-
-    bool test = isChar( my_str );
-    std::cout << "is char: " << ((test == 0) ? "false" : "true") << std::endl;
-
-    test = isInt( my_str );
-    std::cout << "is int: " << ((test == 0) ? "false" : "true") << std::endl;
-
-    test = isFloat( my_str );
-    std::cout << "is float: " << ((test == 0) ? "false" : "true") << std::endl;
-
-    test = isDouble( my_str );
-    std::cout << "is double: " << ((test == 0) ? "false" : "true") << std::endl;
-
-    //2147483647
-    //strtof - float
-    //strtod - double
-    //strtold - double
-    // long int n = atoll( argv[1] );
-    // std::cout << n << std::endl;
-    // if ( n < -2147483648 || n > 2147483647 )
-    //     std::cout << "overflow" << std::endl;
     
-    long double d = strtold( argv[1], NULL );
-    std::cout << d << std::endl;
-    std::cout << std::numeric_limits<double>::min() << " " << std::numeric_limits<double>::max() << std::endl;
-    if ( d > std::numeric_limits<double>::max() || d < std::numeric_limits<double>::min() )
-        std::cout << "overflow" << std::endl;
-
-    //possibility to check overflows
-    // std::stringstream compare;
-    // compare << n << std::endl;;
-
-    // if ( compare.str() != my_str )
-    //     std::cout << "overflow" << std::endl;
-
-
-
-    // char c = static_cast<char>(n);
-    // std::cout << c << std::endl;
-
-    // int i = static_cast<int>(n);
-    // std::cout << i << std::endl;
+    if ( argc != 2 )
+        return ( 1 );
     
-    // double d = static_cast<double>(n);
-    // std::cout << d << std::endl;
-    
-    // float f = static_cast<float>(n);
-    // std::cout << f << std::endl;
-
+    convert( argv[1] );
     return ( 0 );
 }

@@ -10,6 +10,6 @@ The goal of these modules is to introduce you to Object-Oriented Programming.
 | CPP02 | Operator overloading and Orthodox Canonical Form |
 | CPP03 | Inheritance |
 | CPP04 | Polymorphism, Abstract Classes and Interfaces |
-| CPP05 | Exceptions - Try - Catch |
+| CPP05 | Exception - Try - Catch |
 | CPP06 | in progress |
 

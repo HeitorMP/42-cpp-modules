@@ -152,10 +152,6 @@ bool    isInt( std::string const &intCandidate )
 
 bool    isFloat( std::string const &floatCandidate )
 {
-    if ( floatCandidate == "-inff" || floatCandidate == "+inff" || floatCandidate == "nanf" )
-    {
-        return ( true );
-    }
     if ( floatCandidate.find_first_not_of( "-.f0123456789" ) != std::string::npos )
     {   
         return ( false );
@@ -181,22 +177,21 @@ bool    isFloat( std::string const &floatCandidate )
 
 bool    isDouble( std::string const &doubleCandidate )
 {
-    if ( doubleCandidate == "-inf" || doubleCandidate == "+inf" || doubleCandidate == "nan" )
-    {
-        return ( true );
-    }
     if ( doubleCandidate.find_first_not_of( "-.0123456789" ) != std::string::npos )
     {   
         return ( false );
     }
+
     if ( ft_count_if(doubleCandidate, '.') != 1 || ft_count_if(doubleCandidate, '-') > 1 )
     {
         return ( false );
     }
+
     if ( ft_count_if(doubleCandidate, '-') ==  1 && !startsWith( doubleCandidate, "-" ) )
     {
         return ( false );
     }
+
     if ( !isSurroundByDigits( doubleCandidate, '.') )
     {
         return ( false );
@@ -204,7 +199,11 @@ bool    isDouble( std::string const &doubleCandidate )
     return ( true );    
 }
 
-
+bool    isPseudo( std::string const &pseudoCandidate )
+{
+    return ( pseudoCandidate == "-inf" || pseudoCandidate == "+inf" || pseudoCandidate == "nan"  || \
+         pseudoCandidate == "-inff" || pseudoCandidate == "+inff" || pseudoCandidate == "nanf" );
+}
 
 void    convertChar( std::string src )
 {
@@ -224,8 +223,6 @@ void    convertChar( std::string src )
 
 void    convertInt( std::string src )
 {
-   
-
     int     i = atoi( src.c_str() );
     char    c = static_cast<char>( i );
     float   f = static_cast<float>( i );
@@ -235,57 +232,72 @@ void    convertInt( std::string src )
         std::cout << "char: Non displayable" << std::endl;
     else
         std::cout << "char: '" << c << "'" << std::endl;
-    
+
     if ( isOverload( src, "INT") )
         std::cout << "int: overload" << std::endl;
     else
         std::cout << "int: " << i << std::endl;
-    
+
     if ( isOverload( src, "FLOAT") )
         std::cout << "float: overload" << std::endl;
     else
         std::cout << std::fixed << "float: " << std::setprecision(1) << f << "f" << std::endl;
+
     if ( isOverload( src, "DOUBLE") )
         std::cout << "double: overload" << std::endl;
     else
         std::cout << std::fixed << "double: " << std::setprecision(1) << d << std::endl;
 }
 
-
 void    convertFloat( std::string src )
 {
-    long double longNumber = strtold( src.c_str(), NULL );
-
     float   f = strtof( src.c_str(), NULL );
     char    c = static_cast<char>( f );
     int     i = static_cast<int>( f );
     double  d = static_cast<double>( f );
 
-    if ( isOverload( src, "CHAR") )
+    if ( isOverload( src, "CHAR") || isPseudo( src ) )
         std::cout << "char: Non displayable" << std::endl;
     else
-        std::cout << "char: " << c << std::endl;
-    
-    if ( longNumber < std::numeric_limits<int>::min() || longNumber > std::numeric_limits<int>::max() )
+        std::cout << "char: '" << c << "'" << std::endl;
+
+    if ( isOverload( src, "INT") || isPseudo( src ) )
         std::cout << "int: overload" << std::endl;
     else
         std::cout << "int: " << i << std::endl;
-    
-    if ( longNumber < std::numeric_limits<float>::min() || longNumber > std::numeric_limits<float>::max() )
+
+    if ( isOverload( src, "FLOAT") )
         std::cout << "float: overload" << std::endl;
     else
         std::cout << std::fixed << "float: " << std::setprecision(1) << f << "f" << std::endl;
 
-    if ( longNumber < std::numeric_limits<double>::min() || longNumber > std::numeric_limits<double>::max() )
+    if ( isOverload( src, "DOUBLE") )
         std::cout << "double: overload" << std::endl;
     else
         std::cout << std::fixed << "double: " << std::setprecision(1) << d << std::endl;
 }
 
+void    convertPseudo( std::string src )
+{
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+
+    char sign = src[0];
+    if ( src.find( "nan" ) != std::string::npos )
+    {
+        std::cout << "float: nanf\n";
+        std::cout << "double: nan\n";
+    }
+    else
+    {
+        std::cout << "float: " << sign << "inff" << std::endl;
+        std::cout << "double: " << sign << "inf" << std::endl;
+    }
+}
+
+
 void    convertDouble( std::string src )
 {
-    long double longNumber = strtold( src.c_str(), NULL );
-
     double  d = strtod( src.c_str(), NULL );
     char    c = static_cast<char>( d );
     int     i = static_cast<int>( d );
@@ -294,19 +306,19 @@ void    convertDouble( std::string src )
     if ( isOverload( src, "CHAR") )
         std::cout << "char: Non displayable" << std::endl;
     else
-        std::cout << "char: " << c << std::endl;
-    
-    if ( longNumber < std::numeric_limits<int>::min() || longNumber > std::numeric_limits<int>::max() )
+        std::cout << "char: '" << c << "'" << std::endl;
+
+    if ( isOverload( src, "INT") )
         std::cout << "int: overload" << std::endl;
     else
         std::cout << "int: " << i << std::endl;
-    
-    if ( longNumber < std::numeric_limits<float>::min() || longNumber > std::numeric_limits<float>::max() )
+
+    if ( isOverload( src, "FLOAT") )
         std::cout << "float: overload" << std::endl;
     else
         std::cout << std::fixed << "float: " << std::setprecision(1) << f << "f" << std::endl;
 
-    if ( longNumber < std::numeric_limits<double>::min() || longNumber > std::numeric_limits<double>::max() )
+    if ( isOverload( src, "DOUBLE") )
         std::cout << "double: overload" << std::endl;
     else
         std::cout << std::fixed << "double: " << std::setprecision(1) << d << std::endl;
@@ -324,6 +336,8 @@ void    convert ( char const src[] )
         convertFloat( my_str );
     else if ( isDouble( my_str ) )
         convertDouble( my_str );
+    else if ( isPseudo( my_str ) )
+        convertPseudo( my_str );
     else
         std::cout << "Unknown type" << std::endl;
 }

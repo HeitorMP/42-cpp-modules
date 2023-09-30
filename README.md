@@ -1,7 +1,7 @@
 
 # 42 CPP MODULES
 
-The goal of these modules is to introduce you to Object-Oriented Programming.
+The objective of these modules is to provide you with an introduction to Object-Oriented Programming.
 
 | Module | Description |
 | :---: | :---: |

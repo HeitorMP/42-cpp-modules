@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 11:13:45 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/01 14:03:41 by hmaciel-         ###   ########.fr       */
+/*   Created: 2023/10/01 18:44:40 by hmaciel-          #+#    #+#             */
+/*   Updated: 2023/10/01 18:59:33 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
+#ifndef ARRAY_HPP
+# define ARRAY_HPP
 
-int main(int argc, char const *argv[])
+# include "Array.tpp"
+
+template <class T>
+class Array
 {
-	(void)argc;
-	(void)argv;
-	Base *teste = generate();
-	std::cout << teste << std::endl;
+	private:
+		T 				*array;
+		unsigned int	size;
 
-	identify( teste );
-	identify( *teste );
-	return 0;
-}
+	public:
+		Array();
+		Array( unsigned int size );
+		Array( Array const & src );
+		~Array();
+
+		Array & operator=( Array const & rhs );
+
+};
+
+#endif

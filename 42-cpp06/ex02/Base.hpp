@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 10:56:31 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/01 11:44:37 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/01 14:02:11 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	identify( Base* p );
 
 /*It prints the actual type of the object pointed to by p: "A", "B" or "C". Using a pointer
 inside this function is forbidden.*/
-//void	identify( Base& p );
+void	identify( Base& p );
 
 #endif

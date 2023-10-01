@@ -5,21 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 11:13:45 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/01 14:03:41 by hmaciel-         ###   ########.fr       */
+/*   Created: 2023/10/01 18:44:44 by hmaciel-          #+#    #+#             */
+/*   Updated: 2023/10/01 18:53:04 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
+#include <iostream>
 
 int main(int argc, char const *argv[])
 {
-	(void)argc;
-	(void)argv;
-	Base *teste = generate();
-	std::cout << teste << std::endl;
+	int * a = new int();
 
-	identify( teste );
-	identify( *teste );
+	std::cout << *a << std::endl;
 	return 0;
 }

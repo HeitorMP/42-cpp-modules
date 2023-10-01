@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 11:13:45 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/01 14:03:41 by hmaciel-         ###   ########.fr       */
+/*   Created: 2023/10/01 18:54:32 by hmaciel-          #+#    #+#             */
+/*   Updated: 2023/10/01 18:58:46 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
+#include "Array.hpp"
 
-int main(int argc, char const *argv[])
+template <class T>
+Array<T>::Array() : n(0)
 {
-	(void)argc;
-	(void)argv;
-	Base *teste = generate();
-	std::cout << teste << std::endl;
-
-	identify( teste );
-	identify( *teste );
-	return 0;
+	this->array = new T[0];
 }

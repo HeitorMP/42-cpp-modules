@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 11:13:45 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/01 14:03:41 by hmaciel-         ###   ########.fr       */
+/*   Created: 2023/10/01 17:04:33 by hmaciel-          #+#    #+#             */
+/*   Updated: 2023/10/01 17:23:35 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
+#ifndef ITER_HPP
+# define ITER_HPP
 
-int main(int argc, char const *argv[])
-{
-	(void)argc;
-	(void)argv;
-	Base *teste = generate();
-	std::cout << teste << std::endl;
+# include <iostream>
 
-	identify( teste );
-	identify( *teste );
-	return 0;
+template <typename T>
+void iter( T *array, int length, void ( *f )( T& ) ) {
+	for ( int i = 0; i < length; i++ )
+		( *f )( array[i] );
 }
+
+#endif

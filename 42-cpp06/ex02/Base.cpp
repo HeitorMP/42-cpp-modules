@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:02:33 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/01 11:46:57 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/01 14:17:26 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ Base * generate(void)
 {
 	srand( time( NULL ) );
 	// to test wrong types
-	int random = ( rand() % 10 ) ;
-	//int random = ( rand() % 3 );
+	//int random = ( rand() % 10 ) ;
+	int random = ( rand() % 3 );
 
 	switch ( random )
 	{
@@ -55,17 +55,49 @@ TYPE* dynamic_cast<TYPE*> (object);
 */
 void	identify( Base* p )
 {
-	if (dynamic_cast<A*>(p))
-		std::cout << "Type of object: A" << std::endl;
-	else if (dynamic_cast<B*>(p))
-		std::cout << "Type of object: B" << std::endl;
-	else if (dynamic_cast<C*>(p))
-		std::cout << "Type of object: C" << std::endl;
+	if ( dynamic_cast<A*>(p) )
+		std::cout << "Type of object: *A" << std::endl;
+	else if ( dynamic_cast<B*>(p) )
+		std::cout << "Type of object: *B" << std::endl;
+	else if ( dynamic_cast<C*>(p) )
+		std::cout << "Type of object: *C" << std::endl;
 	else
 		std::cout << "Type of object: unknown" << std::endl;
 }
 
-// void	identify( Base& p )
-// {
-// 	;
-// }
+void	identify( Base& p )
+{
+	try
+	{
+		dynamic_cast<A&>(p);
+		std::cout << "Type of object: &A" << std::endl;
+		return ;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	try
+	{
+		dynamic_cast<B&>(p);
+		std::cout << "Type of object: &B" << std::endl;
+		return ;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	try
+	{
+		dynamic_cast<C&>(p);
+		std::cout << "Type of object: &C" << std::endl;
+		return ;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	std::cout << "Type of object: unknown" << std::endl;
+}

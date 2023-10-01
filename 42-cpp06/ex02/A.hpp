@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   A.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 10:31:56 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/09/28 10:49:50 by hmaciel-         ###   ########.fr       */
+/*   Created: 2023/10/01 11:26:53 by hmaciel-          #+#    #+#             */
+/*   Updated: 2023/10/01 11:26:54 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
 
-# include <iostream>
 
-class ScalarConverter
+#ifndef A_HPP
+# define A_HPP
+
+# include "Base.hpp"
+
+class A : public Base
 {
-    
+
 };
 
 #endif
-

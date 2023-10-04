@@ -5,22 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 18:44:40 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/01 18:59:33 by hmaciel-         ###   ########.fr       */
+/*   Created: 2023/10/04 09:47:13 by hmaciel-          #+#    #+#             */
+/*   Updated: 2023/10/04 11:55:19 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
-# include "Array.tpp"
+# include <iostream>
 
-template <class T>
+template<class T>
 class Array
 {
 	private:
-		T 				*array;
-		unsigned int	size;
+		T				*array;
+		unsigned int	n_size;
 
 	public:
 		Array();
@@ -29,7 +29,10 @@ class Array
 		~Array();
 
 		Array & operator=( Array const & rhs );
+		T & operator[]( unsigned int index );
 
+		unsigned int	size( void ) const;
 };
 
+# include "Array.tpp"
 #endif

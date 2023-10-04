@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:49:20 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/04 12:19:42 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:26:59 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Array<T>::Array( unsigned int size ) : n_size( size )
 template<class T>
 Array<T>::Array( Array<T> const & src )
 {
-	this->array = NULL;
+	this->array = NULL; // prevent conditional jump...
 	*this = src;
 	return ;
 }

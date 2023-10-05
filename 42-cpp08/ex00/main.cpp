@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:30:14 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/04 23:13:37 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/05 07:46:08 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ int main( void )
     lst.push_back(3); // 3
     lst.push_front(20); // 0
 
-	std::cout << "Value 1 found at deque indice: " << easyfind(lst, 1) << std::endl;
-	std::cout << "Value 2 found at deque indice: " << easyfind(lst, 2) << std::endl;
-	std::cout << "Value 3 found at deque indice: " << easyfind(lst, 3) << std::endl;
-	std::cout << "Value 20 found at deque indice: " << easyfind(lst, 20) << std::endl;
+	std::cout << "Value 1 found at list indice: " << easyfind(lst, 1) << std::endl;
+	std::cout << "Value 2 found at list indice: " << easyfind(lst, 2) << std::endl;
+	std::cout << "Value 3 found at list indice: " << easyfind(lst, 3) << std::endl;
+	std::cout << "Value 20 found at list indice: " << easyfind(lst, 20) << std::endl;
 	std::cout << "Value not found returns : " << easyfind(lst, 40) << std::endl;
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:20:24 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/05 00:22:28 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/05 08:27:19 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,22 @@ void	Span::addNumber( int const & number )
 void	Span::fill( int const & number )
 {
 	srand( time( NULL ) );
+
 	for ( int i = 0; i < number; i++ )
 	{
 		this->addNumber( rand() % ( number * 100 ) );
 	}
+}
+
+int	Span::longestSpan() const
+{
+	if ( this->n < 2 )
+		throw std::runtime_error( "The container has only one number" );
+	
+	int	max = *max_element(this->spanList.begin(), this->spanList.end());
+	int	min = *min_element(this->spanList.begin(), this->spanList.end());
+
+	return ( max - min );
 }
 
 std::vector<int>	Span::getVector( void ) const
@@ -70,7 +82,7 @@ unsigned int		Span::getN( void ) const
 	return ( this->n );
 }
 
-std::ostream& operator <<(std::ostream& o, const Span& span)
+std::ostream& operator << ( std::ostream& o, const Span& span )
 {
 	std::vector<int>	temp_vec = span.getVector();
 	unsigned int		temp_n = span.getN();

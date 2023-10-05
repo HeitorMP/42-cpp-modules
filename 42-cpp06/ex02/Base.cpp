@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:02:33 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/01 14:17:26 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/02 11:12:59 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	identify( Base& p )
 {
 	try
 	{
-		dynamic_cast<A&>(p);
+		( void )dynamic_cast<A&>(p);
 		std::cout << "Type of object: &A" << std::endl;
 		return ;
 	}
@@ -80,7 +80,7 @@ void	identify( Base& p )
 
 	try
 	{
-		dynamic_cast<B&>(p);
+		( void )dynamic_cast<B&>(p);
 		std::cout << "Type of object: &B" << std::endl;
 		return ;
 	}
@@ -91,7 +91,7 @@ void	identify( Base& p )
 
 	try
 	{
-		dynamic_cast<C&>(p);
+		( void )dynamic_cast<C&>(p);
 		std::cout << "Type of object: &C" << std::endl;
 		return ;
 	}

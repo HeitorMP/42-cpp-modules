@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 10:31:52 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/04 10:55:33 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/03 11:27:33 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,7 @@ bool	ScalarConverter::isOverload( std::string const &src, std::string const &typ
 	long double	longNumber = strtold( src.c_str(), NULL );
 
 	if ( type == "CHAR" )
-	{
-		char c = longNumber;
-		return (c < 32 || c == 127);
-	}
+		return ( longNumber < 32 || longNumber > 126 );
 	else if ( type == "INT" )
 		return (  longNumber < std::numeric_limits<int>::min() || longNumber > std::numeric_limits<int>::max() );
 	else if ( type == "FLOAT" )
@@ -146,7 +143,6 @@ bool	ScalarConverter::isOverload( std::string const &src, std::string const &typ
 	else if ( type == "DOUBLE" )
 		return ( longNumber < -std::numeric_limits<double>::max() || longNumber > std::numeric_limits<double>::max() ); // lowest return = -max
 
-	std::cerr << "err: overload function: type not found" << std::endl;
 	return ( false );
 }
 
@@ -238,7 +234,7 @@ void	ScalarConverter::convertChar( std::string const & src )
 	float	f = static_cast<float>( c );
 	double	d = static_cast<double>( c );
 
-	if ( isOverload( src, "CHAR") )
+	if ( c < 32 || c > 127 )
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << c << "'" << std::endl;

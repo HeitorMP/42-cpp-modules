@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:15:56 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/05 08:24:18 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/06 10:06:29 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <vector>
 # include <cstdlib>
 # include <algorithm>
+# include <limits>
 
 class Span
 {
@@ -33,7 +34,7 @@ class Span
 		
 		Span & operator=( Span const & rhs );
 
-		//int		shortestSpan() const;
+		int		shortestSpan() const;
 		int		longestSpan() const;
 		void	addNumber( int const & number );
 		void	fill( int const & number );

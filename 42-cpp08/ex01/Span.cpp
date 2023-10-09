@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:20:24 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/05 08:27:19 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/06 10:34:34 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,30 @@ void	Span::fill( int const & number )
 
 	for ( int i = 0; i < number; i++ )
 	{
-		this->addNumber( rand() % ( number * 100 ) );
+		int randNumber = rand();
+		//std::cout << randNumber << std::endl;
+		std::vector<int>::iterator it = find(this->spanList.begin(), this->spanList.end(), randNumber);
+		if ( it == this->spanList.end() )
+			this->addNumber( randNumber );
 	}
+}
+
+int	Span::shortestSpan() const
+{
+	if ( this->n < 2 )
+		throw std::runtime_error( "The container has only one number" );
+	
+	int	minSpan = std::numeric_limits<int>::max();
+	std::vector<int> aux = this->spanList;
+
+	sort( aux.begin(), aux.end() );
+	for (int i = 0; i < int(aux.size()) - 1; i++)
+	{
+		if ( abs(aux[i] - aux[i + 1]) < minSpan )
+			minSpan = abs(aux[i] - aux[i + 1]);
+	}
+	
+	return ( minSpan );
 }
 
 int	Span::longestSpan() const

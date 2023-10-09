@@ -6,15 +6,15 @@
 #    By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/06 14:36:52 by hmaciel-          #+#    #+#              #
-#    Updated: 2023/10/09 12:08:52 by hmaciel-         ###   ########.fr        #
+#    Updated: 2023/10/04 23:16:10 by hmaciel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Folders and Names
-NAME		= span
+NAME		= easyfind
 SRCDIR		= .
-SRCS		= main.cpp Span.cpp
-INCLUDES	= Span.hpp
+SRCS		= main.cpp
+INCLUDES	= easyfind.hpp
 OBJSDIR		= objs
 OBJS		= $(SRCS:%.cpp=$(OBJSDIR)/%.o)
 

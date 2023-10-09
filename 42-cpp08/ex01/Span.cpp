@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:20:24 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/06 10:34:34 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/09 11:42:13 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ Span & Span::operator=( Span const & rhs )
 	return ( *this );
 }
 
-
 void	Span::addNumber( int const & number )
 {
 	if ( this->spanList.size() < this->n )
@@ -56,10 +55,15 @@ void	Span::fill( int const & number )
 {
 	srand( time( NULL ) );
 
+	int	avaiableSlots = ( this->n - (int)this->spanList.size() );
+
+	if ( number > avaiableSlots )
+		throw std::runtime_error( "Out of vector limits" );
+
 	for ( int i = 0; i < number; i++ )
 	{
 		int randNumber = rand();
-		//std::cout << randNumber << std::endl;
+
 		std::vector<int>::iterator it = find(this->spanList.begin(), this->spanList.end(), randNumber);
 		if ( it == this->spanList.end() )
 			this->addNumber( randNumber );
@@ -68,30 +72,28 @@ void	Span::fill( int const & number )
 
 int	Span::shortestSpan() const
 {
-	if ( this->n < 2 )
+	if ( this->spanList.size() < 2 )
 		throw std::runtime_error( "The container has only one number" );
-	
+
 	int	minSpan = std::numeric_limits<int>::max();
 	std::vector<int> aux = this->spanList;
 
 	sort( aux.begin(), aux.end() );
-	for (int i = 0; i < int(aux.size()) - 1; i++)
+	for ( int i = 0; i < int(aux.size()) - 1; i++)
 	{
-		if ( abs(aux[i] - aux[i + 1]) < minSpan )
-			minSpan = abs(aux[i] - aux[i + 1]);
+		if ( abs( aux[i] - aux[i + 1]) < minSpan )
+			minSpan = abs( aux[i] - aux[i + 1] );
 	}
-	
 	return ( minSpan );
 }
 
 int	Span::longestSpan() const
 {
-	if ( this->n < 2 )
+	if ( this->spanList.size() < 2 )
 		throw std::runtime_error( "The container has only one number" );
-	
+
 	int	max = *max_element(this->spanList.begin(), this->spanList.end());
 	int	min = *min_element(this->spanList.begin(), this->spanList.end());
-
 	return ( max - min );
 }
 
@@ -108,7 +110,7 @@ std::ostream& operator << ( std::ostream& o, const Span& span )
 {
 	std::vector<int>	temp_vec = span.getVector();
 	unsigned int		temp_n = span.getN();
-	
+
 	std::cout << "Total size: " << temp_n << std::endl;
 	std::cout << "Filled size: " << temp_vec.size() << std::endl;
 	for ( int i = 0; i < (int)temp_vec.size(); i++ )

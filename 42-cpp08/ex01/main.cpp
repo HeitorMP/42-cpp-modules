@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:36:29 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/06 10:35:43 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/09 11:42:11 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 
 int main( void )
 {
-	Span sp = Span(10000);
-	//sp.addNumber(6);
+	Span sp = Span(50);
+	sp.addNumber(6);
+	//sp.addNumber(7);
 	//sp.addNumber(3);
 	//sp.addNumber(17);
 	//sp.addNumber(9);
 	//sp.addNumber(11);
-	sp.fill( 10000 );
+	try 
+	{	
+		sp.fill( 50 );
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	//sp.addNumber(11);
 
 	//std::cout << sp << std::endl;

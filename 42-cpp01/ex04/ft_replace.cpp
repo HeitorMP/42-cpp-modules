@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 18:05:15 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/09/21 13:09:46 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:48:33 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int ft_replace(int argc, char const *argv[]) {
     std::string fileName, fullStr;
     std::stringstream full;
 
-    if (argc != 4)
+    if (argc != 4 || argv[2][0] == '\0' )
     {
         std::cerr << "Wrong params..." << std::endl;
         std::cerr << "usage: ./rep filename s1 s2" << std::endl;

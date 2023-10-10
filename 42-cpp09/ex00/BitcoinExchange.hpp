@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:48:17 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/09 16:24:00 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/10 11:03:18 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,32 @@
 
 # include <iostream>
 # include <fstream>
+# include <algorithm>
+# include <map>
+# include <bits/stdc++.h> 
 
 class BitcoinExchange
 {
-    private:
+	private:
 
-        std::ifstream   _inputFile;
+		std::ifstream	_inputFile;
+		std::ifstream	_databaseFile;
+		std::map<std::string, float> databaseMap;
+		std::map<std::string, float> inputMap;
 
-    public:
-        BitcoinExchange();
-        BitcoinExchange( BitcoinExchange const & src );
-        ~BitcoinExchange();
-        BitcoinExchange & operator=( BitcoinExchange const & rhs );
+	public:
+		BitcoinExchange();
+		BitcoinExchange( BitcoinExchange const & src );
+		~BitcoinExchange();
+		BitcoinExchange & operator=( BitcoinExchange const & rhs );
 
-        bool load( std::string fileName );
-        
+		bool			loadInput( std::string fileName );
+		bool			loadDatabase( std::string fileName );
+		bool			getInputFile() const;
+		bool			getDatabaseFile() const;
+		void			generateMap();
 };
+
+std::ostream& operator <<( std::ostream& o, const BitcoinExchange& i );
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:48:17 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/10 11:03:18 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/11 16:10:57 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <iostream>
 # include <fstream>
 # include <algorithm>
+# include <string>
 # include <map>
 # include <bits/stdc++.h> 
 
@@ -39,6 +40,7 @@ class BitcoinExchange
 		bool			getInputFile() const;
 		bool			getDatabaseFile() const;
 		void			generateMap();
+		void			printMap();
 };
 
 std::ostream& operator <<( std::ostream& o, const BitcoinExchange& i );

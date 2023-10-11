@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 12:18:02 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/09 15:29:13 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:30:11 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class MutantStack : public std::stack< T, Container >
 private:
 
 public:
-    MutantStack( void ) {};
-    ~MutantStack( void ) {};
+    MutantStack() {};
+    ~MutantStack() {};
 
     MutantStack( const MutantStack& src )
     {
@@ -35,12 +35,12 @@ public:
     {
         if ( this != &rhs )
         {
-            std::stack< T, Container >::operator=( rhs );
+            std::stack< T, Container >::operator=( this, rhs );
         }
         return *this;
     }
+    
     typedef typename Container::iterator    iterator;
-
     iterator    begin( void )
     {
         return this->c.begin();

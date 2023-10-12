@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:48:17 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/11 16:10:57 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/12 11:57:20 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <algorithm>
 # include <string>
 # include <map>
-# include <bits/stdc++.h> 
+# include <cstdlib>
+# include <bits/stdc++.h>
+# include "helpers.hpp"
 
 class BitcoinExchange
 {
@@ -27,7 +29,6 @@ class BitcoinExchange
 		std::ifstream	_inputFile;
 		std::ifstream	_databaseFile;
 		std::map<std::string, float> databaseMap;
-		std::map<std::string, float> inputMap;
 
 	public:
 		BitcoinExchange();
@@ -36,10 +37,10 @@ class BitcoinExchange
 		BitcoinExchange & operator=( BitcoinExchange const & rhs );
 
 		bool			loadInput( std::string fileName );
-		bool			loadDatabase( std::string fileName );
 		bool			getInputFile() const;
 		bool			getDatabaseFile() const;
-		void			generateMap();
+		bool			generateMap();
+		void			btc();
 		void			printMap();
 };
 

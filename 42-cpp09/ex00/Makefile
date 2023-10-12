@@ -6,15 +6,15 @@
 #    By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/06 14:36:52 by hmaciel-          #+#    #+#              #
-#    Updated: 2023/10/10 09:44:36 by hmaciel-         ###   ########.fr        #
+#    Updated: 2023/10/12 10:40:59 by hmaciel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Folders and Names
 NAME		= btc
 SRCDIR		= .
-SRCS		= main.cpp BitcoinExchange.cpp
-INCLUDES	= BitcoinExchange.hpp
+SRCS		= main.cpp BitcoinExchange.cpp helpers.cpp
+INCLUDES	= BitcoinExchange.hpp helpers.hpp
 OBJSDIR		= objs
 OBJS		= $(SRCS:%.cpp=$(OBJSDIR)/%.o)
 

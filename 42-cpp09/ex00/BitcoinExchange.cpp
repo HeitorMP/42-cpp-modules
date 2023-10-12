@@ -6,112 +6,11 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:02:13 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/11 16:53:28 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:54:33 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
-
-enum Month
-{
-	JAN = 1,
-	FEB,
-	MAR,
-	APR,
-	MAY,
-	JUNE,
-	JULY,
-	AUG,
-	SEPT,
-	OCT,
-	NOV,
-	DEC,
-};
-
-int	ft_count_if( std::string const &src, char const &to_find )
-{
-	int	count = 0;
-
-	for ( int i = 0; i < (int)src.size(); i++ )
-		if ( src[i] == to_find ) { count++; }
-
-	return ( count );
-}
-
-bool	isSurroundByDigits( std::string const &src, char const &to_find )
-{
-	if ( src.find( to_find ) == std::string::npos )
-		return ( false );
-
-	int	pos = src.find( to_find );
-	if ( std::isdigit( src[pos - 1] ) && std::isdigit( src[pos + 1] ) )
-	{
-		return ( true );
-	}
-	return ( false );
-}
-
-bool	isSmallMonth( int month )
-{
-	return ( month == APR || month == JUNE || month == SEPT || month == NOV);
-}
-
-bool	isLeapYear(int year)
-{
-	if (year % 400 == 0) { return true; }
-	else if (year % 100 == 0) { return false; }
-	else if (year % 4 == 0) { return true; }
-	return false;
-}
-
-bool	isValidDate( std::string dateCandidate )
-{
-	struct tm tm;
-	
-	if ( strptime(dateCandidate.c_str(), "%Y-%m-%d", &tm) )
-	{
-		int year = tm.tm_year + 1900;
-		int month = tm.tm_mon + 1;
-		int day = tm.tm_mday;
-
-		if ( isSmallMonth( month ) && day > 30 )
-			return ( false );
-		if ( month == FEB && isLeapYear( year ) && day > 29 )
-			return ( false );
-		else if ( month == FEB && !isLeapYear( year ) && day > 28 )
-			return ( false );
-
-		return ( true );
-	}
-	return ( false ); // false by format
-}
-
-bool	isValidValue( std::string valueCandidate )
-{
-	if ( valueCandidate.find_first_not_of( ".0123456789" ) != std::string::npos )
-	{
-		return ( false );
-	}
-	if ( ft_count_if(valueCandidate, '.') > 1 )
-	{
-		return ( false );
-	}
-	if ( ft_count_if(valueCandidate, '.') == 1 && !isSurroundByDigits( valueCandidate, '.') )
-	{
-		return ( false );
-	}
-	if ( strtold( valueCandidate.c_str(), NULL ) > 1000 )
-	{
-		return ( false );
-	}
-	return ( true );
-}
-
-bool	isValidLine( std::string lineCandidate )
-{
-	return ( ft_count_if( lineCandidate, '|' ) == 1 );
-}
 
 BitcoinExchange::BitcoinExchange()
 {
@@ -152,12 +51,6 @@ bool BitcoinExchange::loadInput( std::string fileName )
 	return ( ( this->_inputFile.is_open() ) ? true : false );
 }
 
-bool BitcoinExchange::loadDatabase( std::string fileName )
-{
-	this->_databaseFile.open( fileName.c_str(), std::ifstream::in );
-	return ( ( this->_databaseFile.is_open() ) ? true : false );
-}
-
 bool	BitcoinExchange::getInputFile() const
 {
 	return ( this->_inputFile.is_open() );
@@ -181,50 +74,78 @@ bool	BitcoinExchange::getDatabaseFile() const
 // 	std::cout << "value: " << value << std::endl;
 	
 // }
-std::string trim( std::string str )
+
+
+bool	BitcoinExchange::generateMap()
 {
-	std::string whiteSpaces = "  \t\n\r\f\v";
-	str.erase(str.find_last_not_of(whiteSpaces) + 1);
-	str.erase(0,str.find_first_not_of(whiteSpaces));
-	return ( str );
+
+	this->_databaseFile.open( "data.csv", std::ifstream::in );
+	if ( this->_databaseFile.is_open() == false )
+		return ( false );
+
+	std::stringstream	data;
+	std::string			line;
+
+	data << this->_databaseFile.rdbuf();
+	for (std::string line; getline(data, line);)
+	{
+		size_t 		pos = line.find(",");
+		std::string date = line.substr( 0, pos );
+		float		value = atof( (line.substr(  pos + 1 ) ).c_str() );
+		this->databaseMap[date] = value;
+	}
+	return ( true );
 }
 
-void	BitcoinExchange::generateMap()
+void	BitcoinExchange::printMap( )
 {
-	
+	std::map<std::string, float>::iterator start = this->databaseMap.begin();
+	std::map<std::string, float>::iterator end = this->databaseMap.end();
+	while ( start != end )
+	{
+		std::cout << start->first << " | " << start->second << std::endl;
+		start++;
+	}
+}
+
+void	BitcoinExchange::btc( )
+{
 	std::stringstream	input;
 	std::string	line;
 
 	input << this->_inputFile.rdbuf();
 	for (std::string line; getline(input, line);)
 	{
-		size_t 		pos = line.find("|");
-		std::string date = trim( line.substr( 0, pos ));
-		float		value = atof(trim( line.substr(  pos + 1 ) ).c_str());
+		size_t		pos = line.find("|");
+		std::string	date = trim( line.substr( 0, pos ));
+		std::string	value = trim( line.substr(  pos + 1 ) ).c_str();
 		
-		this->inputMap[date] = value;
-		//std::cout << date << " | " << value << std::endl;
-		//this->inputMap.insert( { date, value } );	
-
-		// if ( isValidDate(trim(date)) && isValidValue(trim(value)))
-		// {	
-		// 	this->inputMap[date] = atoi( value.c_str() );
-		// }
+		if ( isValidLine( line ) == false )
+			std::cout << "Error: bad input => " << date << std::endl;
+		else 
+		{
+			if ( isValidDate( date ) == false )
+				std::cout << "Error: bad input => " << date << std::endl;
+			else if ( isValidValue( value ) == false )
+				std::cout << "Error: bad value => " << value << std::endl;
+			else
+			{
+				std::map<std::string, float>::iterator		start = this->databaseMap.begin();
+				std::map<std::string, float>::iterator		end = this->databaseMap.end();
+				std::map<std::string, float>::key_compare	mycomp = this->databaseMap.key_comp();
+				
+				while( start != end )
+				{
+					if ( mycomp((*start).first, date ) )
+					{
+        			 	std::cout << date << " => " << (*start).second * atof( value.c_str() ) << '\n'; 
+						break ;
+					}
+					start++;
+    			}
+			}
+		}
 	}
-	
-}
-
-void	BitcoinExchange::printMap( )
-{
-	std::map<std::string, float>::iterator start = this->inputMap.begin();
-	std::map<std::string, float>::iterator end = this->inputMap.end();
-	while ( start != end )
-	{
-		std::cout << start->first << " | " << start->second << std::endl;
-		start++;
-	}
-
-	
 }
 
 std::ostream& operator << ( std::ostream& o, const BitcoinExchange& bit )

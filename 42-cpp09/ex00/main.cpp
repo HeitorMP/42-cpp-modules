@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:21:21 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/11 16:53:35 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:39:48 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 	
 // }
 
+
+
 int main(int argc, char const *argv[])
 {
 
@@ -53,6 +55,10 @@ int main(int argc, char const *argv[])
 	(void)argc;
 	(void)argv;
 	
+
+	std::cout << isValidSha1sum() << std::endl;
+	
+
 	if ( argc != 2 )
 	{
 		std::cerr << "Wrong args!" << std::endl;
@@ -62,16 +68,11 @@ int main(int argc, char const *argv[])
 	BitcoinExchange teste;
 
 	teste.loadInput(argv[1]);
-	teste.loadDatabase("data.cvs");
 
 	teste.generateMap();
-
-	// std::cout << "Date is valid: " << isValidDate("    		 1997-3-29   ") << std::endl;
-	// std::cout << "Value is valid: " << isValidValue("   		 999     ") << std::endl;
-
-	//generateTokens( "heitor | pinto" )
+	teste.btc();
 	
-	teste.printMap();
+	//teste.printMap();
 	//std::cout << teste << std::endl;
 	return 0;
 }

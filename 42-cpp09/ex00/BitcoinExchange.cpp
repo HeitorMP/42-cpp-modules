@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:02:13 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/12 15:54:33 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/12 16:49:20 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,15 +132,18 @@ void	BitcoinExchange::btc( )
 			{
 				std::map<std::string, float>::iterator		start = this->databaseMap.begin();
 				std::map<std::string, float>::iterator		end = this->databaseMap.end();
-				std::map<std::string, float>::key_compare	mycomp = this->databaseMap.key_comp();
+			//	std::map<std::string, float>::key_compare	mycomp = this->databaseMap.key_comp();
 				
 				while( start != end )
 				{
-					if ( mycomp((*start).first, date ) )
-					{
-        			 	std::cout << date << " => " << (*start).second * atof( value.c_str() ) << '\n'; 
-						break ;
-					}
+					std::cout << (*start).first << std::endl;
+					std::cout << (*start).second << std::endl;
+					// if ( mycomp((*start).first, date ) )
+					// {
+					// //	std::cout << start->second << std::endl;
+        			//  	//std::cout << date << " => " << (*start).second * atof( value.c_str() ) << '\n'; 
+					// 	break ;
+					// }
 					start++;
     			}
 			}

@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 10:36:33 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/12 12:47:11 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/15 09:40:57 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,27 @@ bool	isValidValue( std::string valueCandidate )
 bool	isValidLine( std::string lineCandidate )
 {
 	return ( ft_count_if( lineCandidate, '|' ) == 1 );
+}
+
+bool	hasInputErrors( std::string line, std::string date, std::string value )
+{
+	if ( isValidLine( line ) == false )
+	{
+		std::cout << "Error: bad input => " << date << std::endl;
+		return ( true );
+	}
+	else 
+	{
+		if ( isValidDate( date ) == false )
+		{
+			std::cout << "Error: bad input => " << date << std::endl;
+			return ( true );
+		}
+		else if ( isValidValue( value ) == false )
+		{
+			std::cout << "Error: bad value => " << value << std::endl;
+			return ( true );
+		}
+	}
+	return ( false );
 }

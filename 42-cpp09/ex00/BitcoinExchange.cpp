@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:02:13 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/12 16:49:20 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/15 09:51:50 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ BitcoinExchange & BitcoinExchange::operator=( BitcoinExchange const & rhs )
 bool BitcoinExchange::loadInput( std::string fileName )
 {
 	this->_inputFile.open( fileName.c_str(), std::ifstream::in );
-	return ( ( this->_inputFile.is_open() ) ? true : false );
+		if( this->_inputFile.is_open() == false )
+			throw std::runtime_error("Could not open file");
+	return ( true );
 }
 
 bool	BitcoinExchange::getInputFile() const
@@ -60,25 +62,8 @@ bool	BitcoinExchange::getDatabaseFile() const
 	return ( this->_databaseFile.is_open() );
 }
 
-
-// void	generateTokens( std::string line , )
-// {
-// 	size_t pos = line.find("|");
-// 	std::cout << pos << std::endl;
-// 	std::string key, value;   
-
-// 	key = trim(line.substr ( 0, pos ));
-// 	value = trim(line.substr ( pos + 1 ));
-
-// 	std::cout << "key: " << key << std::endl;
-// 	std::cout << "value: " << value << std::endl;
-	
-// }
-
-
 bool	BitcoinExchange::generateMap()
 {
-
 	this->_databaseFile.open( "data.csv", std::ifstream::in );
 	if ( this->_databaseFile.is_open() == false )
 		return ( false );
@@ -111,41 +96,33 @@ void	BitcoinExchange::printMap( )
 void	BitcoinExchange::btc( )
 {
 	std::stringstream	input;
-	std::string	line;
+	std::string			line;
+	std::string			current_date;
 
 	input << this->_inputFile.rdbuf();
 	for (std::string line; getline(input, line);)
 	{
-		size_t		pos = line.find("|");
+		size_t		pos = line.find( "|" );
 		std::string	date = trim( line.substr( 0, pos ));
 		std::string	value = trim( line.substr(  pos + 1 ) ).c_str();
 		
-		if ( isValidLine( line ) == false )
-			std::cout << "Error: bad input => " << date << std::endl;
-		else 
+		if ( date == "date" || hasInputErrors( line, date, value ) )
+			continue ;
+		else
 		{
-			if ( isValidDate( date ) == false )
-				std::cout << "Error: bad input => " << date << std::endl;
-			else if ( isValidValue( value ) == false )
-				std::cout << "Error: bad value => " << value << std::endl;
-			else
+			std::map<std::string, float>::iterator		start = this->databaseMap.begin();
+			std::map<std::string, float>::iterator		end = this->databaseMap.end();
+			
+			while( start != end )
 			{
-				std::map<std::string, float>::iterator		start = this->databaseMap.begin();
-				std::map<std::string, float>::iterator		end = this->databaseMap.end();
-			//	std::map<std::string, float>::key_compare	mycomp = this->databaseMap.key_comp();
-				
-				while( start != end )
+				if ( ( *start ).first >= date )
 				{
-					std::cout << (*start).first << std::endl;
-					std::cout << (*start).second << std::endl;
-					// if ( mycomp((*start).first, date ) )
-					// {
-					// //	std::cout << start->second << std::endl;
-        			//  	//std::cout << date << " => " << (*start).second * atof( value.c_str() ) << '\n'; 
-					// 	break ;
-					// }
-					start++;
-    			}
+					if ( current_date < date )
+						current_date = date;
+					std::cout << current_date << " => " << ( *start).second * atof( value.c_str() ) << '\n'; 
+					break ;
+				}
+				start++;
 			}
 		}
 	}

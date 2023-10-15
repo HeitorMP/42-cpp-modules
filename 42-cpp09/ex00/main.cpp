@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:21:21 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/12 14:39:48 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/15 09:54:57 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,37 +42,26 @@
 int main(int argc, char const *argv[])
 {
 
-	// map["one"] = 1;
-	// map["two"] = 2;
-	// map["three"] = 3;
-
-	// std::map<std::string, int>::iterator it = map.begin();
-	// while (it != map.end())
-	// {
-	// 	std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
-	// 	++it;
-	// }
-	(void)argc;
-	(void)argv;
-	
-
-	std::cout << isValidSha1sum() << std::endl;
-	
-
 	if ( argc != 2 )
 	{
 		std::cerr << "Wrong args!" << std::endl;
-		return ( -1 );
+		return ( 1 );
 	}
 
-	BitcoinExchange teste;
+	BitcoinExchange	btc;
 
-	teste.loadInput(argv[1]);
-
-	teste.generateMap();
-	teste.btc();
+	try
+	{
+		btc.loadInput( argv[1] );
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		return ( 1 );
+	}
 	
-	//teste.printMap();
-	//std::cout << teste << std::endl;
-	return 0;
+	btc.generateMap();
+	btc.btc();
+
+	return ( 0 );
 }

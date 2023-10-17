@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:02:13 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/15 09:51:50 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:27:07 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ BitcoinExchange & BitcoinExchange::operator=( BitcoinExchange const & rhs )
 {
 	if ( this != &rhs )
 	{
-		;
+		this->databaseMap = rhs.databaseMap;
 	}
 	return ( *this );
 }
@@ -97,7 +97,6 @@ void	BitcoinExchange::btc( )
 {
 	std::stringstream	input;
 	std::string			line;
-	std::string			current_date;
 
 	input << this->_inputFile.rdbuf();
 	for (std::string line; getline(input, line);)
@@ -112,16 +111,17 @@ void	BitcoinExchange::btc( )
 		{
 			std::map<std::string, float>::iterator		start = this->databaseMap.begin();
 			std::map<std::string, float>::iterator		end = this->databaseMap.end();
+			std::map<std::string, float>::iterator		prev = this->databaseMap.begin();
 			
 			while( start != end )
 			{
-				if ( ( *start ).first >= date )
+				if ( ( *start ).first > date )
 				{
-					if ( current_date < date )
-						current_date = date;
-					std::cout << current_date << " => " << ( *start).second * atof( value.c_str() ) << '\n'; 
+					std::cout << ( *start ).first << " => " << ( *prev ).second * atof( value.c_str() ) << std::endl;
 					break ;
 				}
+				else
+					prev = start;
 				start++;
 			}
 		}

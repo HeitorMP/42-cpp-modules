@@ -6,64 +6,73 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:35:47 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/18 08:26:26 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/18 12:48:48 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <algorithm>
-#include <limits>
-#include <deque>
-#include <iomanip>
+//https://iq.opengenus.org/merge-insertion-sort/
 
-bool	isValidNumber( std::string argument, std::deque<int> &deque )
+#include "PmergeMe.hpp"
+#include <sys/time.h>
+
+static	void	printResultDeque( std::deque<int> &deque ,int argc )
 {
-	if ( argument.find_first_not_of( "0123456789" ) != std::string::npos )
-	{
-		std::cerr << "Invalid positive integer value!" << std::endl;
-		return ( false );
-	}
+	struct timeval begin, end;
+	
+	gettimeofday(&begin, 0);
 
-	double nb = atol( argument.c_str() );
-	if ( nb > std::numeric_limits<int>::max() || nb < 0 )
-	{
-		std::cerr << "Out of bounds!" << std::endl;
-		return ( false );
-	}
-	if ( find(deque.begin(), deque.end(), nb ) != deque.end() )
-	{
-		std::cerr << "Repeated element!" << std::endl;
-		return ( false );
-	}
-	return ( true );
+	std::cout << "Before: " << std::flush;
+	dequePrint( deque );
+	std::cout << std::endl;
+
+	mergeInsertionDequeSort( deque );
+
+	std::cout << "After: " << std::flush;
+	dequePrint( deque );
+	std::cout << std::endl;
+
+	gettimeofday(&end, 0);
+
+	long microseconds = end.tv_usec - begin.tv_usec;
+	double elapsed = microseconds / 1000000.0;
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque " << elapsed << " us" << std::endl;
 }
 
-bool	parse( std::deque<int> &deque, int argc, char const *argv[] )
+static	void	printResultVector( std::vector<int> &vector ,int argc )
 {
-	for ( int i = 1; i < argc; i++ )
-	{
-		std::string argument( argv[i] );
-		if ( isValidNumber( argument, deque ) )
-			deque.push_back( atoi( argv[i] ) );
-		else
-			return ( false );
-	}
-	return ( true );
+	struct timeval begin, end;
+	
+	gettimeofday(&begin, 0);
+
+	std::cout << "Before: " << std::flush;
+	vectorPrint( vector );
+	std::cout << std::endl;
+
+	mergeInsertionVectorSort( vector );
+
+	std::cout << "After: " << std::flush;
+	vectorPrint( vector );
+	std::cout << std::endl;
+
+	gettimeofday(&end, 0);
+	long microseconds = end.tv_usec - begin.tv_usec;
+	double elapsed = microseconds / 1000000.0;
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector " << elapsed << " us" << std::endl;
+
 }
 
 int main(int argc, char const *argv[])
 {
 	std::deque<int> deque;
-
-	if ( parse( deque, argc, argv ) == false )
+	std::vector<int> vector;
+	
+	if ( parseDeque( deque, argc, argv ) == false )
 		return ( 1 );
-	std::deque<int>::iterator begin = deque.begin();
-	std::deque<int>::iterator end = deque.end();
-	while ( begin != end )
-	{
-		std::cout << *begin << std::endl;
-		begin++;
-	}
+	if ( parseVector( vector, argc, argv ) == false )
+		return ( 1 );
+	
+	printResultDeque( deque, argc );
+	printResultVector( vector, argc );
 
 	return 0;
 }

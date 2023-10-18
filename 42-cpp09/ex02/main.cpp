@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:35:47 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/10/17 17:27:34 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/10/18 08:26:26 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include <algorithm>
 #include <limits>
 #include <deque>
+#include <iomanip>
 
-bool	isValidNumber( std::string argument, std::deque<int> &deque, std::deque<int> &copy )
+bool	isValidNumber( std::string argument, std::deque<int> &deque )
 {
 	if ( argument.find_first_not_of( "0123456789" ) != std::string::npos )
 	{
@@ -23,42 +24,39 @@ bool	isValidNumber( std::string argument, std::deque<int> &deque, std::deque<int
 		return ( false );
 	}
 
-	if ( atol( argument.c_str() ) > std::numeric_limits<int>::max() )
+	double nb = atol( argument.c_str() );
+	if ( nb > std::numeric_limits<int>::max() || nb < 0 )
 	{
 		std::cerr << "Out of bounds!" << std::endl;
 		return ( false );
 	}
-
-	if ( find(deque.begin(), deque.end(), atoi( argument.c_str() ) ) == deque.end() )
+	if ( find(deque.begin(), deque.end(), nb ) != deque.end() )
 	{
-		std::cerr << "Out of bounds!" << std::endl;
+		std::cerr << "Repeated element!" << std::endl;
 		return ( false );
 	}
 	return ( true );
 }
 
-void	parse( std::deque<int> &deque, int argc, char const *argv[] )
+bool	parse( std::deque<int> &deque, int argc, char const *argv[] )
 {
-	std::deque<int> argvCopy;
-	for ( int i = 1; i < argc; i++ )
-		argvCopy.push_back( atoi(argv[i]) );
-
 	for ( int i = 1; i < argc; i++ )
 	{
 		std::string argument( argv[i] );
-		if ( isValidNumber( argument, deque, argvCopy ) )
+		if ( isValidNumber( argument, deque ) )
 			deque.push_back( atoi( argv[i] ) );
 		else
-			std::cout << "error" << std::endl;
+			return ( false );
 	}
+	return ( true );
 }
 
 int main(int argc, char const *argv[])
 {
 	std::deque<int> deque;
 
-	parse( deque, argc, argv );
-
+	if ( parse( deque, argc, argv ) == false )
+		return ( 1 );
 	std::deque<int>::iterator begin = deque.begin();
 	std::deque<int>::iterator end = deque.end();
 	while ( begin != end )
@@ -66,5 +64,6 @@ int main(int argc, char const *argv[])
 		std::cout << *begin << std::endl;
 		begin++;
 	}
+
 	return 0;
 }

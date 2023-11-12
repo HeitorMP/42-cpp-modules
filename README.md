@@ -11,5 +11,8 @@ The objective of these modules is to provide you with an introduction to Object-
 | CPP03 | Inheritance |
 | CPP04 | Polymorphism, Abstract Classes and Interfaces |
 | CPP05 | Exception - Try - Catch |
-| CPP06 | in progress |
+| CPP06 | C++ casts |
+| CPP07 | Templates |
+| CPP08 | Templated STL containers |
+| CPP09 | Containers |
 

@@ -12,6 +12,16 @@
 
 #include "RPN.hpp"
 
+bool isValidOperation(int n1, int n2)
+{
+	if (!isdigit(n1) || !isdigit(n2))
+	{
+		std::cout << "invalid operations\n";
+		return (false);
+	}
+	return (true);
+}
+
 bool	rpn( std::string input )
 {
 	std::stack<int>		stack;
@@ -32,7 +42,10 @@ bool	rpn( std::string input )
 				stack.pop();
 				n1 = stack.top();
 				stack.pop();
-				stack.push( n1 + n2 );
+				if (isValidOperation(n1, n2))
+					stack.push( n1 + n2 );
+				else
+					break ;
 			}
 			else if ( word == "-" )
 			{
@@ -40,7 +53,10 @@ bool	rpn( std::string input )
 				stack.pop();
 				n1 = stack.top();
 				stack.pop();
-				stack.push( n1 - n2 );
+				if (isValidOperation(n1, n2))
+					stack.push( n1 - n2 );
+				else
+					break ;
 			}
 			else if ( word == "*" )
 			{
@@ -48,7 +64,10 @@ bool	rpn( std::string input )
 				stack.pop();
 				n1 = stack.top();
 				stack.pop();
-				stack.push( n1 * n2 );
+				if (isValidOperation(n1, n2))
+					stack.push( n1 * n2 );
+				else
+					break ;
 			}
 			else if ( word == "/" )
 			{
@@ -56,7 +75,10 @@ bool	rpn( std::string input )
 				stack.pop();
 				n1 = stack.top();
 				stack.pop();
-				stack.push( n1 / n2 );
+				if (isValidOperation(n1, n2))
+					stack.push( n1 / n2 );
+				else
+					break ;
 			}
 			else
 				stack.push( word[0] - '0' );
